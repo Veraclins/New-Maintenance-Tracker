@@ -6,11 +6,12 @@ export const validateSignUp = (req, res, next) => {
 
   // Removes empty spaces
   Object.entries(input).forEach(([key, value]) => {
-    user[key] = value.trim();
+    user[key] = value.toString().trim();
   });
   const {
     firstName, lastName, email, password, passwordConfirmation, dept, employeeCode,
   } = user;
+  const valErrors = 'Validation error(s)';
   // Checks that all fields are present
   const required = ['firstName', 'lastName', 'email', 'password', 'passwordConfirmation', 'dept', 'employeeCode'];
   required.forEach((element) => {
@@ -19,7 +20,7 @@ export const validateSignUp = (req, res, next) => {
     }
   });
   if (Object.keys(errors).length !== 0) {
-    res.status(400).send(errors);
+    res.status(400).send({ Error: valErrors, errors });
   } else {
     // Validate each field
     if (firstName.length < 3 || !/[A-Z][a-z]/.test(firstName)) {
@@ -53,7 +54,7 @@ export const validateSignUp = (req, res, next) => {
     }
 
     if (Object.keys(errors).length !== 0) {
-      res.status(400).send(errors);
+      res.status(400).send({ Error: valErrors, errors });
     } else {
       next();
     }

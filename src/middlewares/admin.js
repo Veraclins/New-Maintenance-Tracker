@@ -1,20 +1,19 @@
-import { client } from '../database';
+import { querySingle } from '../database/queries/query';
 
 /* eslint-disable consistent-return */
 
 export default async function isAdmin(req, res, next) {
   const { id } = req.user;
-  try {
-    await client.query('SELECT * FROM users WHERE id=($1)', [id])
-      .then((response) => {
-        const request = response.rows[0];
-        if (request && request.role !== 'Admin') {
-          return res.status(403).send({ message: 'You are not authorized to perform this operation' });
-        }
-        next();
-      })
-      .catch(err => res.status(500).send({ error: err.message }));
-  } finally {
-    client.release();
-  }
+  const query = {
+    text: 'SELECT * FROM users WHERE id=($1)',
+    values: [id],
+  };
+  querySingle(query)
+    .then((request) => {
+      if (request && request.role !== 'Admin') {
+        return res.status(403).send({ Error: 'You are not authorized to perform this operation' });
+      }
+      next();
+    })
+    .catch(err => res.status(500).send({ Error: err.message }));
 }

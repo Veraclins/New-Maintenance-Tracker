@@ -1,22 +1,17 @@
-import { pool } from '../database';
-import { createRequestsTableQuery, createUsersTableQuery } from '../database/queries/create-tables';
-import { seedRequestsQuery, seedUsersQuery } from '../database/queries/seed-table';
+import prepTablesQuery from '../database/queries/prep-tables';
+import pool from '../database';
 
-export default async function prepTable() {
+
+async function prepTable(req, res) {
   const client = await pool.connect();
   try {
-    await client.query('BEGIN');
-    await client.query('DROP TABLE requests;', console.log('drop requests'));
-    await client.query('DROP TABLE users;', console.log('drop users'));
-    await client.query(createRequestsTableQuery, console.log('create requests'));
-    await client.query(createUsersTableQuery, console.log('create users'));
-    await client.query(seedRequestsQuery, console.log('seed requests'));
-    await client.query(seedUsersQuery, console.log('seed users'));
-    await client.query('COMMIT');
-  } catch (e) {
-    await client.query('ROLLBACK');
-    throw e;
+    const response = await client.query(prepTablesQuery);
+    return res.status(200).send({ response });
+  } catch (error) {
+    return res.status(500).send({ Error: error.message });
   } finally {
     client.release();
   }
 }
+
+export default prepTable;

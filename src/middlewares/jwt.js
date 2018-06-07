@@ -22,7 +22,7 @@ export const verifyToken = async (req, res, next) => {
           req.user = { id };
           next();
         } else {
-          res.status(401).send({ error: 'Your access invalid or expired. Please login again' });
+          res.status(401).send({ error: 'Your access is invalid or expired. Please login again' });
         }
       });
     }

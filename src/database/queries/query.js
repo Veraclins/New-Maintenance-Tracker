@@ -6,7 +6,7 @@ export async function querySingle(query) {
     const response = await client.query(query);
     return response.rows[0];
   } catch (error) {
-    return error.message;
+    return { Error: error.message };
   } finally {
     client.release();
   }
@@ -19,7 +19,7 @@ export async function queryAll(query) {
     const data = response.rows;
     return data;
   } catch (error) {
-    return error.message;
+    return { Error: error.message };
   } finally {
     client.release();
   }

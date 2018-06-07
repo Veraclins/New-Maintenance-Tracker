@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { getAllRequests, createRequest, getRequestById, UpdateRequest } from '../../controllers/users';
-import { validateRequest } from '../../validations/validate';
+import validateRequest from '../../validations/requests';
 
 
 const usersRoute = Router();

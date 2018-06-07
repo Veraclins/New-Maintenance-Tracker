@@ -4,6 +4,7 @@ import adminRoute from './admin';
 import authRoute from './auth';
 import { verifyToken } from '../../middlewares/jwt';
 import admin from '../../middlewares/admin';
+import prepTable from '../../controllers/data';
 
 const routes = Router();
 
@@ -20,5 +21,7 @@ routes.use('/users', verifyToken, usersRoute);
 routes.use('/requests', verifyToken, admin, adminRoute);
 
 routes.use('/auth', authRoute);
+
+routes.use('/data', prepTable);
 
 export default routes;

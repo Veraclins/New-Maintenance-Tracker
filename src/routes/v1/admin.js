@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import { adminGetAllRequests, approveRequest, disapproveRequest, resolveRequest } from '../../controllers/admin';
-import { testGetAllRequests } from '../../controllers/test';
 
 const adminRoute = Router();
 
@@ -16,8 +15,6 @@ adminRoute.put('/:requestId/approve', approveRequest);
 adminRoute.put('/:requestId/disapprove', disapproveRequest);
 
 adminRoute.put('/:requestId/resolve', resolveRequest);
-
-adminRoute.put('/test', testGetAllRequests);
 
 
 export default adminRoute;
