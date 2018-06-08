@@ -6,7 +6,7 @@ cache:
     - "node_modules"
 env:
   - CXX=g++-4.8
-  - CC_TEST_REPORTER_ID=e4a40dd1d744e6fce181a333494eb2cc2d08030433a14afd5a8a51cf60daf94e
+  - CC_TEST_REPORTER_ID=c1e5f78d5937bc11368125439360a86caba1181b6c7d53d4ae2a544cb1485d16
 addons:
   chrome: stable
   apt:

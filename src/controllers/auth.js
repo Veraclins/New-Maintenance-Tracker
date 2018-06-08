@@ -7,15 +7,11 @@ export const signUp = (req, res) => {
     email, firstName, lastName, dept, password, employeeCode,
   } = req.body;
   const hashedPassword = bcrypt.hashSync(password, 8);
-  const query = {
-    text: 'SELECT * FROM users WHERE email=($1)',
-    values: [email],
-  };
   const query2 = {
     text: 'INSERT INTO users (email, first_name, last_name, dept, password, employee_code) VALUES($1, $2, $3, $4, $5, $6) RETURNING *',
     values: [email, firstName, lastName, dept, hashedPassword, employeeCode],
   };
-  querySingle(query)
+  querySingle({ text: 'SELECT * FROM users WHERE email=($1)', values: [email] })
     .then((response) => {
       if (response) {
         res.status(400).send({ Error: 'The email provided is already registered. Please try again' });
@@ -33,8 +29,7 @@ export const signUp = (req, res) => {
           })
           .catch(err => res.status(500).send({ Error: err.message }));
       }
-    })
-    .catch(err => res.status(500).send({ Error: err.message }));
+    });
 };
 
 export const login = (req, res) => {
