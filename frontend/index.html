@@ -1,187 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Contact App</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        /* Tags */
-
-        body {
-            background-color: aquamarine;
-        }
-
-        h1 {
-            text-align: center;
-        }
-        
-        form {
-            margin: auto;
-            width: 70%;
-        }
-        
-        input[type=text],[type=email], select {
-            width: 100%;
-            padding: 12px 20px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        input[type=submit] {
-            width: 100%;
-            background-color: #4CAF50;
-            color: white;
-            padding: 14px 20px;
-            margin: 8px 0;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        input[type=submit]:hover {
-            background-color: #45a049;
-        }
-        a {
-            color: blue;
-        }
-
-        /* Classes */
-        .card {
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-            transition: 0.3s;
-            width: 40%;
-            border-radius: 5px;
-            margin: auto;
-            width: 50%;
-            padding: 10px;
-            background-color: azure;
-            margin-bottom: 10px;
-        }
-
-        .card:hover {
-            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-        }
-
-        .contact {
-            padding: 8px 10px;
-            margin: 4px 0;
-            display: block;
-        }
-        .item {
-            padding: 4px 4px;
-            margin: 4px 0;
-            display: none;
-            border: 5px solid aqua;
-        }
-
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Maintenance Tracker by Agada Clinton Innocent</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <main>
-        <div class="card">
-            <h1>Contact List</h1>
-            <div>
-                <div id="item">
-              <!-- This is where the generated divs and paragraphs will be injected using the id of the div 'item' -->
-                </div>
+    <header>
+        <section class="container">
+            <div class="header-brand"><a href="/Maintenance-Tracker">Maintenance Tracker</a></div>
+                <nav>
+                    <ul class="header-nav" role="navigation">
+                        <li class="nav-left"><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="sign-up.html">Create Account</a></li>
+                        <li><a href="login.html">Login</a></li>
+                    </ul>
+                </nav>
             </div>
-        </div>
-        <div class="card">
-            <h1>Save New Contact</h1>
-            <form name="contactForm" onsubmit="submit" >
-                <label for="name"><strong>Name</strong></label>
-                <input type="text" id="name" name="name" placeholder="Full name..." required>
-
-                <label for="phone"><strong>Phone Number</strong></label>
-                <input type="text" id="phone" name="phone" placeholder="Phone number..." required>
-
-                <label for="name"><strong>Email Address</strong></label>
-                <input type="email" id="email" name="email" placeholder="Email address..." required>
-
-                <label for="address"><strong>Address</strong></label>
-                <input type="text" id="address" name="address" placeholder="Home address..." required>
-
-                <label for="country"><strong>Category</strong></label>
-                <select id="category" name="category">
-                    <option value="Family">Family Members</option>
-                    <option value="Friends">Friends</option>
-                    <option value="Acquaintances">Acquantances</option>
-                    <option value="Colleagues">Colleagues</option>
-                    <option value="Others">Others</option>
-                </select>
-                
-                <input type="submit" value="Submit">
-            </form>
-        </div>
+        </section>
+    </header>
+    <main class="container">
+        <section class="card">
+            <p id="welcome">Welcome to Andela Maintenance Tracker</p>
+            <h3>Where you keep track of your maintenance requests and works</h3>
+        </section>
+        <section class="card">
+            <p>As a team of professionals we believe and keeping record and tracking all our process in order to ensure that every task carried out meets all specifications</p>
+            <p>New to the site? <a href="sign-up.html">Create an account</a> to continue!</p>
+            <p>Already have an account? <a href="login.html">Login</a> to you account.</p>
+        </section>
+        
     </main>
-    
-    
-    <script>
-        // instantiates some global variables for the app
-        var data = document.forms.contactForm.elements;
-        var addressBook = [];
-        // attaches an event listener to the submit button of the form
-        document.forms.contactForm.addEventListener('submit', submit, false);
-        
-        // takes care of the form submission action by first preventing the default 
-        // submission action and assigning the inputs to a contact object
-        function submit (event) {
-            var contact = {};
-            event.preventDefault();
-            contact['name'] = data.name.value;
-            contact['email'] = data.email.value;
-            contact['phone'] = data.phone.value;
-            contact['category'] = data.category.value;
-            contact['address'] = data.address.value;
-
-            // checks if the phone number or email already exists in the address book
-            // this prevents the addition of the same contact multiple times.
-            // If there is a duplicate, it alerts the user, else it adds the new 
-            // contact object to the addressbook array and scrolls the page to the top 
-            // so you can see the newly added contact
-            if (addressBook.some(function (el) {
-                return (el.phone === contact.phone 
-                || el.email === contact.email);
-            })){
-                alert ('Phone Number or Email already exists in the address book!');
-            } else {
-                addressBook.push(contact);
-                showName ();
-                document.documentElement.scrollTop = 0;
-            }
-        }
-
-        // toggles the contact details by changing the visibility of the element
-        function toggleDetails (id) {
-            var e = document.getElementById(id);
-            if(e.style.display == 'block'){
-                e.style.display = 'none';
-            }else {
-                e.style.display = 'block';
-            }
-        }
-        
-        // updates the page with the new contact
-        function showName () {
-            var content = document.getElementById('item');
-            var item = '';
-            for (i = 0; i < addressBook.length; i++) {
-                var id = "'" + addressBook[i].phone + "'"
-               item += '<div class="contact"><a href="#!" onclick="toggleDetails('+ id +')">' 
-               + addressBook[i].name+ '</a></div><div class="item" id="'+addressBook[i].phone +'"><p><strong>Name: </strong>'+ addressBook[i].name 
-               +'</p><p><strong>Phone No: </strong>'+ addressBook[i].phone 
-               +'</p><p><strong>Email: </strong>'+ addressBook[i].email 
-               +'</p><p><strong>Address: </strong>'+ addressBook[i].address 
-               +'</p><p><strong>Category: </strong>'+ addressBook[i].category +'</p></div>';
-
-            }
-            content.innerHTML = item
-            
-        }
-    </script>
+    <script src="app.js"></script>
 </body>
 </html>

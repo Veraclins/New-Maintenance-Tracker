@@ -25,7 +25,7 @@ export const signUp = (req, res) => {
             if (data.id) {
               const { id, created_at } = data; // eslint-disable-line camelcase
               const user = {
-                id, firstName, lastName, craetedAt: created_at,
+                id, firstName, lastName, dept, craetedAt: created_at,
               };
               const token = createToken(user);
               res.status(201).send({ token, user });
@@ -51,12 +51,12 @@ export const login = (req, res) => {
         if (!passwordIsValid) {
           res.status(401).send(unauthenticatedError);
         } else {
-          const { id } = request;
+          const { id, dept } = request;
           const firstName = request.first_name;
           const lastName = request.last_name;
           const createdAt = request.created_at;
           const user = {
-            id, firstName, lastName, createdAt,
+            id, firstName, lastName, dept, createdAt,
           };
           const token = createToken(user);
           return res.send({ token, user });

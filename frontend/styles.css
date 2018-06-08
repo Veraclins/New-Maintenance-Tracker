@@ -69,6 +69,12 @@ button .primary {
     color: green;
     border-color: green;
 }
+
+button .info {
+    color: blue;
+    border-color: blue;
+}
+
 button .danger {
     color: red;
     border-color: red;
@@ -76,6 +82,11 @@ button .danger {
 
 button.primary:hover {
     background-color: green; 
+    color: white;
+}
+
+button.info:hover {
+    background-color: blue; 
     color: white;
 }
 
@@ -168,6 +179,10 @@ margin-right: 20px;
     width: 70%;
 }
 
+.large-card {    
+    width: 90%;
+}
+
 .card-head {
     box-shadow: 0 2px 0 0 rgba(0,0,0,0.2);
     border-radius: 5px; 
@@ -224,6 +239,10 @@ margin-right: 20px;
 
 .danger {
     color: red;
+}
+
+.info {
+    color: blue;
 }
 .warning {
     color: orange;

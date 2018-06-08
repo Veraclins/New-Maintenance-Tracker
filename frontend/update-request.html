@@ -7,7 +7,7 @@
     <title>Maintenance Tracker | Create Request</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body onload="populate()">
     <header>
         <section class="container">
             <div class="header-brand">
@@ -27,7 +27,7 @@
             <div class="card-head primary">
                 Create a Request
             </div>
-            <form name="requestForm" action="dashboard.html">
+            <form name="updateForm" action="dashboard.html">
                 <div class="form-section">
                     <label for="title"><strong>Request Title</strong></label>
                     <input type="text" id="title" name="title" placeholder="Title of the request..." required>
@@ -41,7 +41,9 @@
                 <div class="form-section">
                     <label for="description"><strong>Request Description</strong></label>
                     <textarea id="description" name="description" placeholder="Describe the requested maintenance and why it is necessary..." required></textarea>  
-                </div>                    
+                </div> 
+                
+                <div id="updateError"></div>
 
                 <div class="form-section">
                     <input type="submit" value="Submit">
@@ -52,20 +54,27 @@
     </main>
     <script src="app.js"></script>
     <script>
-        const data = document.forms.requestForm.elements;
+        const data = document.forms.updateForm.elements;
+        function populate() {
+            const request = JSON.parse(localStorage.getItem('request'));
+            data.title.value = request.title;
+            data.duration.value = request.duration;
+            data.description.value = request.description;
+        }
         function submit(event) {
+            const oldRequest = JSON.parse(localStorage.getItem('request'));         
+            event.preventDefault();
             const link = {
-                url: 'http://localhost:4000/api/v1/users/requests',
-                method: 'POST',
+                url: `http://localhost:4000/api/v1/users/requests/${oldRequest.id}`,
+                method: 'PUT',
             };
             const request = {};
-            event.preventDefault();
             request.title = data.title.value;
             request.duration = data.duration.value;
             request.description = data.description.value;
-           createRequest(request);
+           updateRequest(request, link);
         }
-        document.forms.requestForm.addEventListener('submit', submit);
+        document.forms.updateForm.addEventListener('submit', submit);
     </script>
 </body>
 </html>
