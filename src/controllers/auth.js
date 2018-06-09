@@ -7,7 +7,7 @@ export const signUp = (req, res) => {
     email, firstName, lastName, dept, password, employeeCode,
   } = req.body;
   const hashedPassword = bcrypt.hashSync(password, 8);
-  const query2 = {
+  const query = {
     text: 'INSERT INTO users (email, first_name, last_name, dept, password, employee_code) VALUES($1, $2, $3, $4, $5, $6) RETURNING *',
     values: [email, firstName, lastName, dept, hashedPassword, employeeCode],
   };
@@ -16,12 +16,12 @@ export const signUp = (req, res) => {
       if (response) {
         res.status(400).send({ Error: 'The email provided is already registered. Please try again' });
       } else {
-        querySingle(query2, res)
+        querySingle(query, res)
           .then((data) => {
             if (data.id) {
-              const { id, created_at } = data; // eslint-disable-line camelcase
+              const { id, role, created_at } = data; // eslint-disable-line camelcase
               const user = {
-                id, firstName, lastName, dept, craetedAt: created_at,
+                id, role, firstName, lastName, dept, craetedAt: created_at,
               };
               const token = createToken(user);
               res.status(201).send({ token, user });
@@ -46,12 +46,12 @@ export const login = (req, res) => {
         if (!passwordIsValid) {
           res.status(401).send(unauthenticatedError);
         } else {
-          const { id, dept } = request;
+          const { id, dept, role } = request;
           const firstName = request.first_name;
           const lastName = request.last_name;
           const createdAt = request.created_at;
           const user = {
-            id, firstName, lastName, dept, createdAt,
+            id, role, firstName, lastName, dept, createdAt,
           };
           const token = createToken(user);
           return res.send({ token, user });

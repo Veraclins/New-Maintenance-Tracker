@@ -7,7 +7,7 @@
     <title>Maintenance Tracker | Admin | Filtered Requests</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body  onload="showAdminReq('approved')">
     <header>
         <section class="container">
             <div class="header-brand">
@@ -15,9 +15,8 @@
             </div>
             <nav>
                 <ul class="header-nav" role="navigation">
-                    <li><a href="index.html">Home</a></li>
                     <li class="nav-left"><a href="dashboard.html">Dashboard</a></li>
-                    <li><a href="index.html">Logout</a></li>
+                    <li><a href="#!" onclick="logout()">Logout</a></li>
                 </ul>
             </nav>
         </section>
@@ -38,6 +37,11 @@
                 </div>
                 <div class="column">
                     <div class="card-body centered">
+                        <a href="admin-disapproved-request.html" class=" button primary">Disapproved Requests</a>
+                    </div> 
+                </div>
+                <div class="column">
+                    <div class="card-body centered">
                         <a href="admin-resolved-request.html" class=" button primary">Resolved Requests</a>
                     </div> 
                 </div>
@@ -47,98 +51,9 @@
             <div class="card-head" id="title">
                 Approved Requests
             </div>
-            <ul class="card-body">
-                <li class="columns" id="approved">
-                    <a href="request-detail.html">Hp Latitude c60 Hard Disk Replacement</a>
-                    <div class="columns">
-                        <button class="small button primary" onclick="resolveRequest">Resolve</button>
-                    </div>
-                </li>
-                <li class="columns" id="approved">
-                    <a href="request-detail.html">Hp Latitude c60 Hard Disk Replacement</a>
-                    <div class="columns">
-                        <button class="small button primary" onclick="resolveRequest">Resolve</button>
-                    </div>
-                </li>
-                <li class="columns" id="approved">
-                    <a href="request-detail.html">Hp Latitude c60 Hard Disk Replacement</a>
-                    <div class="columns">
-                        <button class="small button primary" onclick="resolveRequest">Resolve</button>
-                    </div>
-                </li>
-                <li class="columns" id="approved">
-                    <a href="request-detail.html">Hp Latitude c60 Hard Disk Replacement</a>
-                    <div class="columns">
-                        <button class="small button primary" onclick="resolveRequest">Resolve</button>
-                    </div>
-                </li>
-                <li class="columns" id="approved">
-                    <a href="request-detail.html">Hp Latitude c60 Hard Disk Replacement</a>
-                    <div class="columns">
-                        <button class="small button primary" onclick="resolveRequest">Resolve</button>
-                    </div>
-                </li>
-                <li class="columns" id="approved">
-                    <a href="request-detail.html">Hp Latitude c60 Hard Disk Replacement</a>
-                    <div class="columns">
-                        <button class="small button primary" onclick="resolveRequest">Resolve</button>
-                    </div>
-                </li>
-                <li class="columns" id="approved">
-                    <a href="request-detail.html">Hp Latitude c60 Hard Disk Replacement</a>
-                    <div class="columns">
-                        <button class="small button primary" onclick="resolveRequest">Resolve</button>
-                    </div>
-                </li>
-                <li class="columns" id="approved">
-                    <a href="request-detail.html">Hp Latitude c60 Hard Disk Replacement</a>
-                    <div class="columns">
-                        <button class="small button primary" onclick="resolveRequest">Resolve</button>
-                    </div>
-                </li>
-                <li class="columns" id="approved">
-                    <a href="request-detail.html">Hp Latitude c60 Hard Disk Replacement</a>
-                    <div class="columns">
-                        <button class="small button primary" onclick="resolveRequest">Resolve</button>
-                    </div>
-                </li>
-                <li class="columns" id="approved">
-                    <a href="request-detail.html">Hp Latitude c60 Hard Disk Replacement</a>
-                    <div class="columns">
-                        <button class="small button primary" onclick="resolveRequest">Resolve</button>
-                    </div>
-                </li>
-                <li class="columns" id="approved">
-                    <a href="request-detail.html">Hp Latitude c60 Hard Disk Replacement</a>
-                    <div class="columns">
-                        <button class="small button primary" onclick="resolveRequest">Resolve</button>
-                    </div>
-                </li>
-                <li class="columns" id="approved">
-                    <a href="request-detail.html">Hp Latitude c60 Hard Disk Replacement</a>
-                    <div class="columns">
-                        <button class="small button primary" onclick="resolveRequest">Resolve</button>
-                    </div>
-                </li>
-                <li class="columns" id="approved">
-                    <a href="request-detail.html">Hp Latitude c60 Hard Disk Replacement</a>
-                    <div class="columns">
-                        <button class="small button primary" onclick="resolveRequest">Resolve</button>
-                    </div>
-                </li>
-                <li class="columns" id="approved">
-                    <a href="request-detail.html">Hp Latitude c60 Hard Disk Replacement</a>
-                    <div class="columns">
-                        <button class="small button primary" onclick="resolveRequest">Resolve</button>
-                    </div>
-                </li>
-                <li class="columns" id="approved">
-                    <a href="request-detail.html">Hp Latitude c60 Hard Disk Replacement</a>
-                    <div class="columns">
-                        <button class="small button primary" onclick="resolveRequest">Resolve</button>
-                    </div>
-                </li>
-            </ul>
+            <!-- User requests will be injected here -->   
+            <ul class="card-body" id="approvedRequests"></ul>
+
         </section>
     </main>
     <script src="app.js"></script>

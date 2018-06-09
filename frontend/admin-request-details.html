@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Maintenance Tracker | Admin Area</title>
+    <title>Maintenance Tracker | Request Details</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body onload="getAdminRequests()">
+<body onload="adminReqDetails()"> 
     <header>
         <section class="container">
             <div class="header-brand">
@@ -23,8 +23,6 @@
     </header>
     <main class="container">
         <section class="card">
-            <p id="welcome">Welcome to Admin Area</p>
-            <h3>Users are waiting for your approval and resolution</h3>
             <div class="columns">
                 <div class="column">
                     <div class="card-body centered">
@@ -48,16 +46,13 @@
                 </div>
             </div>
         </section>
-        <section class="card large-card">
-            <div class="card-head">
-                Pending Requests
-            </div>
-            <!-- User requests will be injected here -->   
-            <ul class="card-body" id="pendingRequests">
-                      
+        <section class="card small-card">
+            <!-- The request details will be injected here -->
+            <div id="adminDetail"></div>
 
-            </ul>
+            <div id="updError"></div>
         </section>
+        
     </main>
     <script src="app.js"></script>
 </body>

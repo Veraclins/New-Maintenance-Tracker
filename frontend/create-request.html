@@ -15,9 +15,8 @@
             </div>
             <nav>
                 <ul class="header-nav" role="navigation">
-                    <li><a href="index.html">Home</a></li>
                     <li class="nav-left"><a href="dashboard.html">Dashboard</a></li>
-                    <li><a href="index.html">Logout</a></li>
+                    <li><a href="#!" onclick="logout()">Logout</a></li>
                 </ul>
             </nav>
         </section>
@@ -41,7 +40,9 @@
                 <div class="form-section">
                     <label for="description"><strong>Request Description</strong></label>
                     <textarea id="description" name="description" placeholder="Describe the requested maintenance and why it is necessary..." required></textarea>  
-                </div>                    
+                </div>
+                
+                <div id="createError"></div>
 
                 <div class="form-section">
                     <input type="submit" value="Submit">
@@ -63,7 +64,7 @@
             request.title = data.title.value;
             request.duration = data.duration.value;
             request.description = data.description.value;
-            
+
             createRequest(request, link);
         }
         document.forms.requestForm.addEventListener('submit', submit);
