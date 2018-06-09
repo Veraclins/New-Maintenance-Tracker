@@ -14,7 +14,7 @@ export const verifyToken = async (req, res, next) => {
   const token = req.headers['x-access-token'];
   try {
     if (!token) {
-      res.status(400).send({ error: 'You must supply a token' });
+      res.status(400).send({ Error: 'You must supply a token' });
     } else {
       await jwt.verify(token, secret, (err, decoded) => {
         if (decoded) {
@@ -22,7 +22,7 @@ export const verifyToken = async (req, res, next) => {
           req.user = { id };
           next();
         } else {
-          res.status(401).send({ error: 'Your access is invalid or expired. Please login again' });
+          res.status(401).send({ Error: 'Your access is invalid or expired. Please login again' });
         }
       });
     }

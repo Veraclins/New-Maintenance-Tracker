@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Maintenance Tracker | Admin | Filtered Requests</title>
+    <title>Maintenance Tracker | Admin Area</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body onload="showAdminReq('pending')">
     <header>
         <section class="container">
             <div class="header-brand">
@@ -15,16 +15,16 @@
             </div>
             <nav>
                 <ul class="header-nav" role="navigation">
-                    <li><a href="index.html">Home</a></li>
                     <li class="nav-left"><a href="dashboard.html">Dashboard</a></li>
-                    <li><a href="index.html">Logout</a></li>
+                    <li><a href="#!" onclick="logout()">Logout</a></li>
                 </ul>
             </nav>
         </section>
     </header>
     <main class="container">
         <section class="card">
-            <p id="welcome">Filter Requests</p>
+            <p id="welcome">Welcome to Admin Area</p>
+            <h3>Users are waiting for your approval and resolution</h3>
             <div class="columns">
                 <div class="column">
                     <div class="card-body centered">
@@ -38,122 +38,23 @@
                 </div>
                 <div class="column">
                     <div class="card-body centered">
+                        <a href="admin-disapproved-request.html" class=" button primary">Disapproved Requests</a>
+                    </div> 
+                </div>
+                <div class="column">
+                    <div class="card-body centered">
                         <a href="admin-resolved-request.html" class=" button primary">Resolved Requests</a>
                     </div> 
                 </div>
             </div>
         </section>
-        <section class="card medium-card">
-            <div class="card-head" id="title">
+        <section class="card large-card">
+            <div class="card-head">
                 Pending Requests
             </div>
-            <ul class="card-body">
-                <li class="columns" id="pending">
-                    <a href="request-details.html">Printer circuit board repair</a>
-                    <div class="columns">
-                        <button class="small button primary" onclick="approveRequest">Approve</button>
-                        <button class="small button danger" onclick="rejectRequest">Reject</button>
-                    </div>
-                </li>
-                <li class="columns" id="pending">
-                    <a href="request-details.html">Water dispenser compressor replacement</a>
-                    <div class="columns">
-                        <button class="small button primary" onclick="approveRequest">Approve</button>
-                        <button class="small button danger" onclick="rejectRequest">Reject</button>
-                    </div>
-                </li>
-                <li class="columns" id="pending">
-                    <a href="request-details.html">Printer circuit board repair</a>
-                    <div class="columns">
-                        <button class="small button primary" onclick="approveRequest">Approve</button>
-                        <button class="small button danger" onclick="rejectRequest">Reject</button>
-                    </div>
-                </li>
-                <li class="columns" id="pending">
-                    <a href="request-details.html">Printer circuit board repair</a>
-                    <div class="columns">
-                        <button class="small button primary" onclick="approveRequest">Approve</button>
-                        <button class="small button danger" onclick="rejectRequest">Reject</button>
-                    </div>
-                </li>
-                <li class="columns" id="pending">
-                    <a href="request-details.html">Water dispenser compressor replacement</a>
-                    <div class="columns">
-                        <button class="small button primary" onclick="approveRequest">Approve</button>
-                        <button class="small button danger" onclick="rejectRequest">Reject</button>
-                    </div>
-                </li>
-                <li class="columns" id="pending">
-                    <a href="request-details.html">Printer circuit board repair</a>
-                    <div class="columns">
-                        <button class="small button primary" onclick="approveRequest">Approve</button>
-                        <button class="small button danger" onclick="rejectRequest">Reject</button>
-                    </div>
-                </li>
-                <li class="columns" id="pending">
-                    <a href="request-details.html">Samsung Split Unit AC tubing repair</a>
-                    <div class="columns">
-                        <button class="small button primary" onclick="approveRequest">Approve</button>
-                        <button class="small button danger" onclick="rejectRequest">Reject</button>
-                    </div>
-                </li>
-                <li class="columns" id="pending">
-                    <a href="request-details.html">Printer circuit board repair</a>
-                    <div class="columns">
-                        <button class="small button primary" onclick="approveRequest">Approve</button>
-                        <button class="small button danger" onclick="rejectRequest">Reject</button>
-                    </div>
-                </li>
-                <li class="columns" id="pending">
-                    <a href="request-details.html">Water dispenser compressor replacement</a>
-                    <div class="columns">
-                        <button class="small button primary" onclick="approveRequest">Approve</button>
-                        <button class="small button danger" onclick="rejectRequest">Reject</button>
-                    </div>
-                </li>
-                <li class="columns" id="pending">
-                    <a href="request-details.html">Printer circuit board repair</a>
-                    <div class="columns">
-                        <button class="small button primary" onclick="approveRequest">Approve</button>
-                        <button class="small button danger" onclick="rejectRequest">Reject</button>
-                    </div>
-                </li>
-                <li class="columns" id="pending">
-                    <a href="request-details.html">Samsung Split Unit AC tubing repair</a>
-                    <div class="columns">
-                        <button class="small button primary" onclick="approveRequest">Approve</button>
-                        <button class="small button danger" onclick="rejectRequest">Reject</button>
-                    </div>
-                </li>
-                <li class="columns" id="pending">
-                    <a href="request-details.html">Samsung Split Unit AC tubing repair</a>
-                    <div class="columns">
-                        <button class="small button primary" onclick="approveRequest">Approve</button>
-                        <button class="small button danger" onclick="rejectRequest">Reject</button>
-                    </div>
-                </li>
-                <li class="columns" id="pending">
-                    <a href="request-details.html">Printer circuit board repair</a>
-                    <div class="columns">
-                        <button class="small button primary" onclick="approveRequest">Approve</button>
-                        <button class="small button danger" onclick="rejectRequest">Reject</button>
-                    </div>
-                </li>
-                <li class="columns" id="pending">
-                    <a href="request-details.html">Samsung Split Unit AC tubing repair</a>
-                    <div class="columns">
-                        <button class="small button primary" onclick="approveRequest">Approve</button>
-                        <button class="small button danger" onclick="rejectRequest">Reject</button>
-                    </div>
-                </li>
-                <li class="columns" id="pending">
-                    <a href="request-details.html">Printer circuit board repair</a>
-                    <div class="columns">
-                        <button class="small button primary" onclick="approveRequest">Approve</button>
-                        <button class="small button danger" onclick="rejectRequest">Reject</button>
-                    </div>
-                </li>
-            </ul>
+            <!-- User requests will be injected here -->   
+            <ul class="card-body" id="pendingRequests"></ul>
+            
         </section>
     </main>
     <script src="app.js"></script>

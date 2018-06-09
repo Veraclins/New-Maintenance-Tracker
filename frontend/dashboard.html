@@ -15,9 +15,9 @@
             </div>
             <nav>
                 <ul class="header-nav" role="navigation">
-                    <li class="nav-left"><a href="index.html">Home</a></li>
+                    <li class="nav-left"><a id="admin" href="admin-pending-request.html">Admin Page</a></li>
                     <li><a href="create-request.html">Create New Request</a></li>
-                    <li><a href="index.html">Logout</a></li>
+                    <li><a href="#!" onclick="logout()">Logout</a></li>
                 </ul>
             </nav>
         </section>
@@ -42,6 +42,9 @@
     <script src="app.js"></script>
     <script>
         document.getElementById('welcome').innerHTML = `${fullName()}, welcome to your dashboard`;
+        const admin = document.getElementById('admin');
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (user.role !== "Admin") admin.style.display = 'none';
     </script>
 </body>
 </html>

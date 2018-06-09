@@ -52,6 +52,18 @@ a.danger:hover {
     text-decoration: none;
 }
 
+a.warning:hover {
+    background-color: orange; 
+    color: white;
+    text-decoration: none;
+}
+
+a.info:hover {
+    background-color: blue; 
+    color: white;
+    text-decoration: none;
+}
+
 button, .button {
     padding: 14px 25px;
     margin: 6px;
@@ -245,6 +257,21 @@ margin-right: 20px;
     color: blue;
 }
 .warning {
+    color: orange;
+}
+
+.resolved {
+    color: green;
+}
+
+.disapproved {
+    color: red;
+}
+
+.approved {
+    color: blue;
+}
+.pending {
     color: orange;
 }
 

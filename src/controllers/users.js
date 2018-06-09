@@ -44,8 +44,8 @@ export const UpdateRequest = (req, res) => {
   const { requestId } = req.params;
   validParam(res, requestId);
   const query = {
-    text: 'UPDATE requests SET title=($1), duration=($2), description=($3) WHERE (id=($4) AND users_id=($5) AND status=($6)) RETURNING *',
-    values: [title, duration, description, requestId, userId, 'pending'],
+    text: 'UPDATE requests SET title=($1), duration=($2), description=($3), updated_at=($4) WHERE (id=($5) AND users_id=($6) AND status=($7)) RETURNING *',
+    values: [title, duration, description, 'NOW()', requestId, userId, 'pending'],
   };
   const error = { Error: "You don't have a request with the given id or it has already been approved. Please check again" };
   handleRequest(res, query, error);
