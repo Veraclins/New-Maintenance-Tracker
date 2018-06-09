@@ -59,8 +59,8 @@
             e.preventDefault();
             user.email = loginData.email.value;
             user.password = loginData.password.value;
-            // temporary. Will use fetch
-           login(user, link);
+            
+            login(user, link);
         }
         document.forms.loginForm.addEventListener('submit', submit);
     </script>

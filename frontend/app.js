@@ -4,7 +4,15 @@ function fullName() {
 }
 
 function fetchData(url, payload) {
-  const response = fetch(url, payload)
+  const response = fetch(url, {
+    method: payload.method,
+    headers: {
+      Accept: 'application/json',
+      'Content-type': 'application/json',
+      'x-access-token': payload.token,
+    },
+    body: payload.body,
+  })
     .then(res => res.json());
   return response;
 }
@@ -13,18 +21,13 @@ function updateRequest(request, link) {
   const token = localStorage.getItem('token');
   fetchData(link.url, {
     method: link.method,
-    headers: {
-      Accept: 'application/json',
-      'Content-type': 'application/json',
-      'x-access-token': token,
-    },
+    token,
     body: JSON.stringify(request),
   })
     .then((data) => {
       if (data.Error) {
         const error = data.Error;
         const err = document.getElementById('updateError');
-
         const e = `
           <div class="form-section">
             <div class="danger">${error}</div>
@@ -64,11 +67,7 @@ function getRequest(id) {
   const token = localStorage.getItem('token');
   fetchData(`http://localhost:4000/api/v1/users/requests/${id}`, {
     method: 'GET',
-    headers: {
-      Accept: 'application/json',
-      'Content-type': 'application/json',
-      'x-access-token': token,
-    },
+    token,
   })
     .then((request) => {
       localStorage.setItem('request', JSON.stringify(request));
@@ -76,14 +75,46 @@ function getRequest(id) {
     });
 }
 
-function displayRequests(request, id) {
-  const el = document.getElementById(id);
+function signUp(user, link) {
+  fetch(link.url, {
+    method: link.method,
+    body: JSON.stringify(user),
+  })
+    .then(res => res.json())
+    .then(data => console.log(data));
+}
+
+function login(user, link) {
+  fetchData(link.url, {
+    method: link.method,
+    body: JSON.stringify(user),
+  })
+    .then((data) => {
+      if (data.Error) {
+        const error = data.Error;
+        const err = document.getElementById('loginError');
+
+        const e = `
+          <div class="form-section">
+            <div class="danger">${error}</div>
+          </div>`;
+        err.innerHTML = e;
+      } else {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        window.location.href = 'dashboard.html';
+      }
+    });
+}
+
+function displayRequests(request) {
+  const el = document.getElementById('userRequests');
   let rows = `
   <li class="columns">
-    <h2 class="column"><strong>Request</strong></h2>
+    <h4 class="column"><strong>Request</strong></h4>
     <div class="column columns">
-      <h2><strong>Date</strong></h2>
-      <h2><strong>Status</strong></h2>
+      <h4><strong>Date</strong></h4>
+      <h4><strong>Status</strong></h4>
     </div>
   </li>`;
   if (request.length !== 0) {
@@ -109,57 +140,14 @@ function displayRequests(request, id) {
   el.innerHTML = rows;
 }
 
-function signUp(user, link) {
-  fetch(link.url, {
-    method: link.method,
-    headers: {
-      Accept: 'application/json',
-      'Content-type': 'application/json',
-    },
-    body: JSON.stringify(user),
-  })
-    .then(res => res.json())
-    .then(data => console.log(data));
-}
-
-function login(user, link) {
-  fetchData(link.url, {
-    method: link.method,
-    headers: {
-      Accept: 'application/json',
-      'Content-type': 'application/json',
-    },
-    body: JSON.stringify(user),
-  })
-    .then((data) => {
-      if (data.Error) {
-        const error = data.Error;
-        const err = document.getElementById('loginError');
-
-        const e = `
-          <div class="form-section">
-            <div class="danger">${error}</div>
-          </div>`;
-        err.innerHTML = e;
-      } else {
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user));
-        window.location.href = 'dashboard.html';
-      }
-    });
-}
-
 function getUserRequests() {
   const token = localStorage.getItem('token');
   fetch('http://localhost:4000/api/v1/users/requests', {
     method: 'GET',
-    headers: {
-      Accept: 'application/json',
-      'Content-type': 'application/json',
-      'x-access-token': token,
-    },
+    token,
+    body: JSON.stringify(request),
   })
     .then(res => res.json())
-    .then(data => displayRequests(data, 'userRequests'));
+    .then(data => displayRequests(data));
 }
 

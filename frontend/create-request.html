@@ -63,7 +63,8 @@
             request.title = data.title.value;
             request.duration = data.duration.value;
             request.description = data.description.value;
-           createRequest(request);
+            
+            createRequest(request, link);
         }
         document.forms.requestForm.addEventListener('submit', submit);
     </script>
