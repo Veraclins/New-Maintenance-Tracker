@@ -17,6 +17,28 @@ function fetchData(url, payload) {
   return response;
 }
 
+function createRequest(request, link) {
+  const token = localStorage.getItem('token');
+  fetchData(link.url, {
+    method: link.method,
+    token,
+    body: JSON.stringify(request),
+  })
+    .then((data) => {
+      if (data.Error) {
+        const err = document.getElementById('createError');
+        const e = `
+          <div class="form-section">
+            <div class="danger">${data.Error}</div>
+          </div>`;
+        err.innerHTML = e;
+      } else {
+        localStorage.setItem('request', JSON.stringify(data));
+        window.location.href = 'dashboard.html';
+      }
+    });
+}
+
 function updateRequest(request, link) {
   const token = localStorage.getItem('token');
   fetchData(link.url, {
@@ -54,13 +76,58 @@ function showDetails() {
     </div>
         
     <div class="card-body">
-      <p><strong>Requester's Name: </strong>${fullName()}</p>                 
-      <p><strong>Department: </strong>${user.dept}</p>                 
-      <p><strong>Duration: </strong>${request.duration}</p>                 
-      <p><strong>Description: </strong>${request.description}</p>
+      <div><strong>Requester's Name: </strong>${fullName()}</div>                 
+      <div><strong>Department: </strong>${user.dept}</div>                 
+      <div><strong>Date Created: </strong>${new Date(request.created_at).toDateString()}</div>                 
+      <div><strong>Date Updated: </strong>${new Date(request.updated_at).toDateString()}</div>                 
+      <div><strong>Status: </strong>${request.status}</div>                 
+      <div><strong>Duration: </strong>${request.duration} day(s)</div>                 
+      <div><strong>Description: </strong>${request.description}</div>
       ${button}
     </div>`;
   el.innerHTML = detail;
+}
+
+function adminReqDetails() {
+  const el = document.getElementById('adminDetail');
+  const request = JSON.parse(localStorage.getItem('request'));
+  let button1 = '';
+  let button2 = '';
+  if (request.status === 'pending') {
+    button1 = `<a href="#!" onclick="adminUpdate(${request.id}, 'approve')" class="button info">Approve</a>`;
+    button2 = `<a href="#!" onclick="adminUpdate(${request.id}, 'disapprove')" class="button danger">Disapprove</a>`;
+  } else if (request.status === 'approved') {
+    button1 = `<a href="#!" onclick="adminUpdate(${request.id}, 'resolve')" class="button primary">Resolve</a>`;
+    button2 = `<a href="#!" onclick="adminUpdate(${request.id}, 'disapprove')" class="button info">Disapprove</a>`;
+  } else {
+    button1 = `<a href="#!" onclick="adminUpdate(${request.id}, 'approve')" class="button info">Approve</a>`;
+  }
+  const detail = `
+    <div class="card-head">
+      <h4>${request.title}</h4>
+    </div>
+
+    <div class="card-body">
+      <div><strong>Status: </strong>${request.status}</div>
+      <div><strong>Date Created: </strong>${new Date(request.created_at).toDateString()}</div>
+      <div><strong>Date Updated: </strong>${new Date(request.updated_at).toDateString()}</div>
+      <div><strong>Duration: </strong>${request.duration} day(s)</div>
+      <div><strong>Description: </strong>${request.description}</div>
+      <div class="columns">
+      ${button1}
+      ${button2}
+    </div>`;
+  el.innerHTML = detail;
+}
+
+function adminReq(id) {
+  const requests = JSON.parse(localStorage.getItem('adminRequests'));
+  let request = {};
+  requests.forEach((element) => {
+    if (element.id === id) request = element;
+  });
+  localStorage.setItem('request', JSON.stringify(request));
+  window.location.href = 'admin-request-details.html';
 }
 
 function getRequest(id) {
@@ -75,13 +142,143 @@ function getRequest(id) {
     });
 }
 
+function logout() {
+  localStorage.setItem('user', '');
+  localStorage.setItem('token', '');
+  window.location.href = 'index.html';
+}
+
+function displayRequests(request, id, type) {
+  const el = document.getElementById(id);
+  let rows = `
+  <li class="columns">
+    <h2 class="column"><strong>Requests</strong></h2>
+    <div class="column columns">
+      <h2><strong>Date</strong></h2>
+      <h2><strong>Status</strong></h2>
+    </div>
+  </li>`;
+  if (request.length === 0) {
+    rows = `
+    <li>
+      <h2 class="centered">
+        You do not  have any request at the moment. <a href="create-request.html">Create a Request</a>
+      </h2>                    
+    </li>`;
+  } else if (request.Error) {
+    rows = `
+    <li>
+      <h2 class="danger centered">
+        ${request.Error}
+      </h2>                    
+    </li>`;
+  } else {
+    request.forEach((element) => {
+      const createdAt = new Date(element.created_at).toDateString();
+      let getReq = '';
+      if (type === 'admin') {
+        getReq = `adminReq(${element.id})`;
+      } else {
+        getReq = `getRequest(${element.id})`;
+      }
+      rows += `
+    <li class="columns">
+      <a class="column" href="#!" id="${element.id}" onclick="${getReq}">${element.title}</a>
+      <div class="column columns">
+        <div>${createdAt}</div>
+        <div class="${element.status}">${element.status}</div>
+      </div>                    
+    </li>`;
+    });
+  }
+  el.innerHTML = rows;
+}
+
+function getUserRequests() {
+  const token = localStorage.getItem('token');
+  fetchData('http://localhost:4000/api/v1/users/requests', {
+    method: 'GET',
+    token,
+  })
+    .then(data => displayRequests(data, 'userRequests', 'user'));
+}
+
+function showAdminReq(status) {
+  const data = JSON.parse(localStorage.getItem('adminRequests'));
+  const request = [];
+  const pageId = `${status}Requests`;
+  data.forEach((element) => {
+    if (element.status === status) request.push(element);
+  });
+  displayRequests(request, pageId, 'admin');
+}
+
+function showAllAdminReq() {
+  const data = JSON.parse(localStorage.getItem('adminRequests'));
+  displayRequests(data, 'allRequests', 'admin');
+}
+
+function getAdminRequests() {
+  const token = localStorage.getItem('token');
+  fetchData('http://localhost:4000/api/v1/requests', {
+    method: 'GET',
+    token,
+  })
+    .then(data => localStorage.setItem('adminRequests', JSON.stringify(data)));
+  showAdminReq('pending', 'pendingRequests');
+}
+
+function adminUpdate(requestId, action) {
+  const token = localStorage.getItem('token');
+  fetchData(`http://localhost:4000/api/v1/requests/${requestId}/${action}`, {
+    method: 'PUT',
+    token,
+  })
+    .then((data) => {
+      if (data.Error) {
+        const err = document.getElementById('updError');
+
+        const e = `
+          <div class="form-section">
+            <div class="danger">${data.Error}</div>
+          </div>`;
+        err.innerHTML = e;
+      } else {
+        window.location.href = 'admin-pending-request.html';
+      }
+    });
+}
+
+
 function signUp(user, link) {
-  fetch(link.url, {
+  fetchData(link.url, {
     method: link.method,
     body: JSON.stringify(user),
   })
-    .then(res => res.json())
-    .then(data => console.log(data));
+    .then((data) => {
+      if (data.Error) {
+        let error = '';
+        const err = document.getElementById('signupError');
+
+        if (data.errors) {
+          Object.entries(data.errors).forEach(([key, value]) => {
+            error += `<li><small><span class="danger">${key}:</span> ${value}</small></li>`;
+          });
+        }
+        const e = `
+          <div class="form-section">
+            <p class="danger">${data.Error}</p>
+            <ul>
+              ${error}
+            </ul>
+          </div>`;
+        err.innerHTML = e;
+      } else {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        window.location.href = 'dashboard.html';
+      }
+    });
 }
 
 function login(user, link) {
@@ -102,52 +299,13 @@ function login(user, link) {
       } else {
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify(data.user));
-        window.location.href = 'dashboard.html';
+        if (data.user.role === 'Admin') {
+          getAdminRequests();
+          window.location.href = 'admin-pending-request.html';
+        } else {
+          window.location.href = 'dashboard.html';
+        }
       }
     });
-}
-
-function displayRequests(request) {
-  const el = document.getElementById('userRequests');
-  let rows = `
-  <li class="columns">
-    <h4 class="column"><strong>Request</strong></h4>
-    <div class="column columns">
-      <h4><strong>Date</strong></h4>
-      <h4><strong>Status</strong></h4>
-    </div>
-  </li>`;
-  if (request.length !== 0) {
-    request.forEach((element) => {
-      const createdAt = new Date(element.created_at).toDateString();
-      rows += `
-    <li class="columns">
-      <a class="column" href="#!" id="${element.id}" onclick="getRequest(${element.id})">${element.title}</a>
-      <div class="column columns">
-        <div>${createdAt}</div>
-        <div class="warning">${element.status}</div>
-      </div>                    
-    </li>`;
-    });
-  } else {
-    rows = `
-    <li>
-      <div>
-        You do not  have any request at the moment. <a href="create-request.html">Create a Request</a>
-      </div>                    
-    </li>`;
-  }
-  el.innerHTML = rows;
-}
-
-function getUserRequests() {
-  const token = localStorage.getItem('token');
-  fetch('http://localhost:4000/api/v1/users/requests', {
-    method: 'GET',
-    token,
-    body: JSON.stringify(request),
-  })
-    .then(res => res.json())
-    .then(data => displayRequests(data));
 }
 

@@ -7,7 +7,7 @@
     <title>Maintenance Tracker | Admin | Filtered Requests</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body onload="showAdminReq('resolved')">
     <header>
         <section class="container">
             <div class="header-brand">
@@ -15,9 +15,8 @@
             </div>
             <nav>
                 <ul class="header-nav" role="navigation">
-                    <li><a href="index.html">Home</a></li>
                     <li class="nav-left"><a href="dashboard.html">Dashboard</a></li>
-                    <li><a href="index.html">Logout</a></li>
+                    <li><a href="#!" onclick="logout()">Logout</a></li>
                 </ul>
             </nav>
         </section>
@@ -33,12 +32,17 @@
                 </div>
                 <div class="column">
                     <div class="card-body centered">
+                        <a href="admin-approved-request.html" class=" button primary">Approved Requests</a>
+                    </div> 
+                </div>
+                <div class="column">
+                    <div class="card-body centered">
                         <a href="admin-pending-request.html" class=" button primary">Pending Requests</a>
                     </div> 
                 </div>
                 <div class="column">
                     <div class="card-body centered">
-                        <a href="admin-approved-request.html" class=" button primary">Approved Requests</a>
+                        <a href="admin-disapproved-request.html" class=" button primary">Disapproved Requests</a>
                     </div> 
                 </div>
             </div>
@@ -47,68 +51,9 @@
             <div class="card-head" id="title">
                 Resolved Requests
             </div>
-            <ul class="card-body">
-                <li class="columns" id="resolved">
-                    <a href="request-detail.html">Network Bridge Re-configuration</a>
-                    <div>Finished</div>
-                </li>
-                <li class="columns" id="resolved">
-                    <a href="request-detail.html">Network Bridge Re-configuration</a>
-                    <div>Finished</div>
-                </li>
-                <li class="columns" id="resolved">
-                    <a href="request-detail.html">Apple Macbook Air Screen Replacement</a>
-                    <div>Finished</div>
-                </li>
-                <li class="columns" id="resolved">
-                    <a href="request-detail.html">Apple Macbook Air Screen Replacement</a>
-                    <div>Finished</div>
-                </li>
-                <li class="columns" id="resolved">
-                    <a href="request-detail.html">Network Bridge Re-configuration</a>
-                    <div>Finished</div>
-                </li>
-                <li class="columns" id="resolved">
-                    <a href="request-detail.html">Network Bridge Re-configuration</a>
-                    <div>Finished</div>
-                </li>
-                <li class="columns" id="resolved">
-                    <a href="request-detail.html">Apple Macbook Air Screen Replacement</a>
-                    <div>Finished</div>
-                </li>
-                <li class="columns" id="resolved">
-                    <a href="request-detail.html">Apple Macbook Air Screen Replacement</a>
-                    <div>Finished</div>
-                </li>
-                <li class="columns" id="resolved">
-                    <a href="request-detail.html">Apple Macbook Air Screen Replacement</a>
-                    <div>Finished</div>
-                </li>
-                <li class="columns" id="resolved">
-                    <a href="request-detail.html">Network Bridge Re-configuration</a>
-                    <div>Finished</div>
-                </li>
-                <li class="columns" id="resolved">
-                    <a href="request-detail.html">Network Bridge Re-configuration</a>
-                    <div>Finished</div>
-                </li>
-                <li class="columns" id="resolved">
-                    <a href="request-detail.html">Apple Macbook Air Screen Replacement</a>
-                    <div>Finished</div>
-                </li>
-                <li class="columns" id="resolved">
-                    <a href="request-detail.html">Apple Macbook Air Screen Replacement</a>
-                    <div>Finished</div>
-                </li>
-                <li class="columns" id="resolved">
-                    <a href="request-detail.html">Apple Macbook Air Screen Replacement</a>
-                    <div>Finished</div>
-                </li>
-                <li class="columns" id="resolved">
-                    <a href="request-detail.html">Apple Macbook Air Screen Replacement</a>
-                    <div>Finished</div>
-                </li>
-            </ul>
+            <!-- User requests will be injected here -->   
+            <ul class="card-body" id="resolvedRequests"></ul>
+
         </section>
     </main>
     <script src="app.js"></script>
