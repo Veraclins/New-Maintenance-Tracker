@@ -1,4 +1,10 @@
-const prepTablesQuery = `DROP TABLE requests;
+const prepTablesQuery = `CREATE type status as ENUM (
+  'pending',
+  'approved',
+  'disapproved',
+  'resolved');
+  
+DROP TABLE IF EXISTS requests;
   CREATE TABLE requests(
     id SERIAL PRIMARY KEY, 
     users_id INTEGER NOT NULL,
@@ -9,7 +15,7 @@ const prepTablesQuery = `DROP TABLE requests;
     created_at TIMESTAMP DEFAULT NOW(), 
     updated_at TIMESTAMP DEFAULT NOW());
 
-    DROP TABLE users;
+    DROP TABLE IF EXISTS users;
     CREATE TABLE users(
     id SERIAL PRIMARY KEY, 
     first_name VARCHAR NOT NULL, 
