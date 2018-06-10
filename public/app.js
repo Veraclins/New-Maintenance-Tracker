@@ -1,4 +1,4 @@
-const baseURL = 'https://veraclins-m-tracker.herokuapp.com/api/v1'
+const baseURL = 'https://veraclins-m-tracker.herokuapp.com/api/v1';
 function fullName() {
   const user = JSON.parse(localStorage.getItem('user'));
   return `${user.lastName} ${user.firstName}`;
@@ -159,7 +159,14 @@ function displayRequests(request, id, type) {
       <h2><strong>Status</strong></h2>
     </div>
   </li>`;
-  if (request.length === 0) {
+  if (request.length === 0 && type === 'admin') {
+    rows = `
+    <li>
+      <h2 class="centered">
+        No requests in this category yet!
+      </h2>                    
+    </li>`;
+  } else if (request.length === 0) {
     rows = `
     <li>
       <h2 class="centered">
@@ -226,7 +233,7 @@ function getAdminRequests() {
     token,
   })
     .then(data => localStorage.setItem('adminRequests', JSON.stringify(data)));
-  showAdminReq('pending', 'pendingRequests');
+  showAdminReq('pending');
 }
 
 function adminUpdate(requestId, action) {
@@ -301,7 +308,6 @@ function login(user, link) {
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify(data.user));
         if (data.user.role === 'Admin') {
-          getAdminRequests();
           window.location.href = 'admin-pending-request.html';
         } else {
           window.location.href = 'dashboard.html';
