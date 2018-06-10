@@ -6,4 +6,5 @@ function handleErrors(errors, res, next) {
   }
 }
 
+
 export default handleErrors;

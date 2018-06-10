@@ -13,7 +13,14 @@
     "type": "git",
     "url": "git+https://github.com/Veraclins/New-Maintenance-Tracker.git"
   },
-  "keywords": ["ES6", "Nodejs", "API", "RESTFUL", "TDD", "Andela"],
+  "keywords": [
+    "ES6",
+    "Nodejs",
+    "API",
+    "RESTFUL",
+    "TDD",
+    "Andela"
+  ],
   "author": "Agada Clinton I.",
   "license": "ISC",
   "bugs": {
@@ -36,7 +43,7 @@
     "morgan": "^1.9.0",
     "pg": "^7.4.3"
   },
-  "devDependencies": {    
+  "devDependencies": {
     "nodemon": "^1.17.4",
     "babel-cli": "^6.26.0",
     "babel-plugin-istanbul": "^4.1.6",

@@ -1,10 +1,4 @@
-const prepTablesQuery = `CREATE type status as ENUM (
-  'pending',
-  'approved',
-  'disapproved',
-  'resolved');
-  
-DROP TABLE IF EXISTS requests;
+const prepTablesQuery = `DROP TABLE IF EXISTS requests;
   CREATE TABLE requests(
     id SERIAL PRIMARY KEY, 
     users_id INTEGER NOT NULL,
