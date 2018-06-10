@@ -13,7 +13,13 @@ const routes = Router();
 // /api/v1 is already prepended to the route
 
 routes.all('/', (req, res) => {
-  res.send({ message: 'Welcome to Maintenance Tracker API.' });
+  res.send({
+    message: 'Welcome to Maintenance Tracker API.',
+    adminLogin: {
+      email: 'admin@admin.com or clinton@test.com',
+      password: 'password',
+    },
+  });
 });
 
 routes.use('/users', verifyToken, usersRoute);
