@@ -19,6 +19,7 @@ routes.all('/', (req, res) => {
       email: 'admin@admin.com or clinton@test.com',
       password: 'password',
     },
+    docs: 'https://veraclins-m-tracker.herokuapp.com/api-docs',
   });
 });
 
