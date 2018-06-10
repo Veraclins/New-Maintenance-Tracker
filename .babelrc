@@ -1,12 +1,5 @@
 {
     "presets": ["env"],
     "sourceMaps": true,
-    "retainLines": true,
-    "env": {
-        "test": {
-          "plugins": [
-            "istanbul"
-          ]
-        }
-    }
+    "retainLines": true
 }

@@ -1,4 +1,4 @@
-const baseURL = 'https://veraclins-m-tracker.herokuapp.com/api/v1';
+const baseURL = 'https://veraclins-m-tracker.herokuapp.com/api/v1'
 function fullName() {
   const user = JSON.parse(localStorage.getItem('user'));
   return `${user.lastName} ${user.firstName}`;
