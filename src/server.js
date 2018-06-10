@@ -3,7 +3,9 @@ import express from 'express';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import swaggerUi from 'swagger-ui-express';
 import v1Route from './routes/v1';
+import swaggerDoc from './swagger.json';
 
 const app = express();
 const { PORT = 3000 } = process.env;
@@ -17,6 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 // Routes handler
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 app.all('/', (req, res) => {
   res.redirect('/api/v1');
 });
