@@ -14,14 +14,27 @@ With a very intuitive frontend and a robust nodejs API, all that is required, is
 The API is also available [here](https://veraclins-m-tracker.herokuapp.com/api/v1)
 
 To run the app locally, clone the repository, cd into New-Maintenance-Tracker and install the packages with:
+
 `npm install`.
 
-You can run the API server with `npm run dev` (runs the API with hot reloading on file changes) or `npm run start` (no reloading). The API runs on PORT 3000 by default but you can run it on any port you want by creating a .env file at the root of the APi and adding the preferred port number. For example, putting PORT=5000 will make the API run on port 5000.
+You can run the API server with
 
-## API Docs
+`npm run dev` (runs the API with hot reloading on file changes) or
+
+`npm run start` (no reloading).
+
+The API runs on PORT 3000 by default but you can run it on any port you want by creating a .env file at the root of the APi and adding the preferred port number. For example, putting PORT=5000 will make the API run on port 5000.
+
+### API Docs
 
 The API docs is available [here](https://veraclins-m-tracker.herokuapp.com/api-docs)
 
 ## Frontend
 
-The frontend uses a minimal express server to serve the frontend pages. To keep it simple it is available only on the frontend branch of the repository. To run it locally, first checkout into that branch `git checkout frontend`
+The frontend uses a minimal express server to serve the frontend pages. To keep it simple it is available only on the `frontend` branch of the repository. To run it locally, first checkout into that branch
+
+`git checkout frontend`
+
+then install the packages with `npm install`, then run the app with
+
+`npm run dev` or `npm run start` (same as in the API scripts).

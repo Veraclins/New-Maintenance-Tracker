@@ -2,9 +2,9 @@ import { Router } from 'express';
 import usersRoute from './users';
 import adminRoute from './admin';
 import authRoute from './auth';
-import { verifyToken } from '../../middlewares/jwt';
-import admin from '../../middlewares/admin';
 import prepTable from '../../controllers/data';
+import { verifyToken } from '../../middlewares/tokenHandler';
+import isAdmin from '../../middlewares/isAdmin';
 
 const routes = Router();
 
@@ -25,7 +25,7 @@ routes.all('/', (req, res) => {
 
 routes.use('/users', verifyToken, usersRoute);
 
-routes.use('/requests', verifyToken, admin, adminRoute);
+routes.use('/requests', verifyToken, isAdmin, adminRoute);
 
 routes.use('/auth', authRoute);
 

@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
-import { createToken } from '../middlewares/jwt';
 import { querySingle } from '../database/queries/query';
+import { createToken } from '../middlewares/tokenHandler';
 
 export const signUp = (req, res) => {
   const {

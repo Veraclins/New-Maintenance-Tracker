@@ -6,7 +6,7 @@
   "scripts": {
     "start": "babel-node src/server.js --presets babel-preset-env",
     "dev": "nodemon src/server.js --exec babel-node --presets babel-preset-env",
-    "test": "cross-env NODE_ENV=test nyc mocha",
+    "test": "cross-env NODE_ENV=test nyc mocha --file test/prep/PrepDb.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
