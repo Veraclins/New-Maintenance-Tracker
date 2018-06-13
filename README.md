@@ -1,7 +1,7 @@
 
 # Badges
 
-[![Build Status](https://travis-ci.org/Veraclins/New-Maintenance-Tracker.svg?branch=develop)](https://travis-ci.org/Veraclins/New-Maintenance-Tracker) [![Coverage Status](https://coveralls.io/repos/github/Veraclins/New-Maintenance-Tracker/badge.svg?branch=develop)](https://coveralls.io/github/Veraclins/New-Maintenance-Tracker?branch=develop) [![Maintainability](https://api.codeclimate.com/v1/badges/3185baf2767d48b4f0b3/maintainability)](https://codeclimate.com/github/Veraclins/New-Maintenance-Tracker/maintainability)
+[![Build Status](https://travis-ci.org/Veraclins/New-Maintenance-Tracker.svg?branch=develop)](https://travis-ci.org/Veraclins/New-Maintenance-Tracker) [![Coverage Status](https://coveralls.io/repos/github/Veraclins/New-Maintenance-Tracker/badge.svg?branch=develop)](https://coveralls.io/github/Veraclins/New-Maintenance-Tracker?branch=develop) [![Maintainability](https://api.codeclimate.com/v1/badges/3185baf2767d48b4f0b3/maintainability)](https://codeclimate.com/github/Veraclins/New-Maintenance-Tracker/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/3185baf2767d48b4f0b3/test_coverage)](https://codeclimate.com/github/Veraclins/New-Maintenance-Tracker/test_coverage)
 
 # Introduction
 
@@ -35,6 +35,6 @@ The frontend uses a minimal express server to serve the frontend pages. To keep 
 
 `git checkout frontend`
 
-then install the packages with `npm install`, then run the app with
+then install the packages with `npm install` and run the app with
 
 `npm run dev` or `npm run start` (same as in the API scripts).
