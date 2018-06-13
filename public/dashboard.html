@@ -24,7 +24,7 @@
     </header>
     <main class="container">
         <section class="card">
-            <p id="welcome"></p>
+            <p id="welcome">Welcome to your dashboard</p>
             <h3>Where you keep track of your maintenance requests and works</h3>
         </section>
         <section class="card large-card">
@@ -39,12 +39,7 @@
         </section>
         
     </main>
-    <script src="app.js"></script>
-    <script>
-        document.getElementById('welcome').innerHTML = `${fullName()}, welcome to your dashboard`;
-        const admin = document.getElementById('admin');
-        const user = JSON.parse(localStorage.getItem('user'));
-        if (user.role !== "Admin") admin.style.display = 'none';
-    </script>
+    <script src="js/app.js"></script>
+    <script src="js/dashboard.js"></script>
 </body>
 </html>
