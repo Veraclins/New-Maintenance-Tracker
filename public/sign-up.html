@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Maintenance Tracker | Create Account</title>
+    <title>Maintenance Tracker | SignUp</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -26,44 +26,51 @@
                 Create an Account
             </div>
             <form name="signUpForm" action="dashboard.html">
-                <div class="form-section"> 
+                    <div id="signupError"></div>
+
+                <div class="form-section">
                     <label for="firstName"><strong>First Name</strong></label>
-                    <input type="text" id="firstName" name="firstName" placeholder="First Name..." required>
+                    <input type="text" id="firstName" name="firstName" placeholder="First Name..." required> 
+                    <div id="firstNameError"></div>
                 </div>
 
-                <div class="form-section"> 
+                <div class="form-section">
                     <label for="lastName"><strong>Last Name</strong></label>
-                    <input type="text" id="lastName" name="lastName" placeholder="Last Name..." required>
+                    <input type="text" id="lastName" name="lastName" placeholder="Last Name..." required> 
+                    <div id="lastNameError"></div>
                 </div>
 
-                <div class="form-section">               
+                <div class="form-section">
                     <label for="name"><strong>Email Address</strong></label>
-                    <input type="email" id="email" name="email" placeholder="Email address..." required>
+                    <input type="email" id="email" name="email" placeholder="Email address..." required> 
+                    <div id="emailError"></div>              
                 </div>          
 
                 <div class="form-section">
                     <label for="password"><strong>Choose a Password</strong></label>
                     <input type="password" id="password" name="password" placeholder="Password..." required>
+                    <div id="passwordError"></div>
                 </div>          
 
                 <div class="form-section">
                     <label for="passwordConfirmation"><strong>Confirm Password</strong></label>
                     <input type="password" id="passwordConfirmation" name="passwordConfirmation" placeholder="Confirm Password..." required>
+                    <div id="passwordConfirmationError"></div>
                 </div>          
 
                 <div class="form-section">
                     <label for="dept"><strong>Department</strong></label>
                     <input type="text" id="dept" name="dept" placeholder="Department..." required>
+                    <div id="deptError"></div>
                 </div>          
 
                 <div class="form-section">
                     <label for="employeeCode"><strong>Employee Code</strong></label>
                     <input type="text" id="employeeCode" name="employeeCode" minlength="5" maxlength="5" placeholder="Employee code..." required>
+                    <div id="employeeCodeError"></div>
                 </div>
                 
-                <div id="signupError"></div>  
-
-                <div class="form-section">               
+                <div class="form-section">       
                     <input type="submit" value="Submit">
                 </div>
             </form>
@@ -71,27 +78,7 @@
         </section>
         
     </main>
-    <script src="app.js"></script>
-    <script>
-        const signUpData = document.forms.signUpForm.elements;
-        function submit(event) {
-            const user = {};
-            const link = {
-                url: `${baseURL}/auth/signup`,
-                method: 'POST',
-            };
-            event.preventDefault();
-            user.firstName = signUpData.firstName.value;
-            user.lastName = signUpData.lastName.value;
-            user.email = signUpData.email.value;
-            user.password = signUpData.password.value;
-            user.passwordConfirmation = signUpData.passwordConfirmation.value;
-            user.dept = signUpData.dept.value;
-            user.employeeCode = signUpData.employeeCode.value;
-
-            signUp(user, link);
-        }
-        document.forms.signUpForm.addEventListener('submit', submit);
-    </script>
+    <script src="js/app.js"></script>
+    <script src="js/signup.js"></script>
 </body>
 </html>
