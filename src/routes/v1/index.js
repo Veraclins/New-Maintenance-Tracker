@@ -14,12 +14,9 @@ const routes = Router();
 
 routes.all('/', (req, res) => {
   res.send({
-    message: 'Welcome to Maintenance Tracker API.',
-    adminLogin: {
-      email: 'admin@admin.com or clinton@test.com',
-      password: 'password',
-    },
+    message: 'Welcome to Maintenance Tracker API by Agada Clinton Innocent.',
     docs: 'https://veraclins-m-tracker.herokuapp.com/api-docs',
+    frontend: 'https://veraclins-frontend.herokuapp.com/',
   });
 });
 
