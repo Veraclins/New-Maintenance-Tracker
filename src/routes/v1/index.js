@@ -14,7 +14,7 @@ const routes = Router();
 
 routes.all('/', (req, res) => {
   res.send({
-    message: 'Welcome to Maintenance Tracker API by Agada Clinton Innocent.',
+    message: 'Welcome to Maintenance Tracker API by Agada Clinton Innocent',
     docs: 'https://veraclins-m-tracker.herokuapp.com/api-docs',
     frontend: 'https://veraclins-frontend.herokuapp.com/',
   });
