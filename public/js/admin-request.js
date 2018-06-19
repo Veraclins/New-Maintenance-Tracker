@@ -1,30 +1,52 @@
+function isAdmin() {
+  const user = JSON.parse(localStorage.getItem('user'));
+  return user.role === 'Admin';
+}
 
+const unAuthorized = () => {
+  const page = document.getElementById('admin');
+  const content = `
+  <section class="card medium-card">
+  <div class="card-head centered danger" >
+      You are not authorized to view this page.
+  </div>
+  <div class="card-body">
+    <div><a href="dashboard.html">Go back to your dashboard</a></div>
+  </div>
+</section>`;
+  page.innerHTML = content;
+};
 function showAdminReq(status) {
-  const data = JSON.parse(localStorage.getItem('adminRequests'));
-  const request = [];
-  const pageId = `${status}Requests`;
+  if (isAdmin()) {
+    const data = JSON.parse(localStorage.getItem('adminRequests'));
+    const request = [];
+    const pageId = `${status}Requests`;
 
-  data.forEach((element) => {
-    if (element.status === status) request.push(element);
-  });
-  displayRequests(request, pageId, 'admin');
+    data.forEach((element) => {
+      if (element.status === status) request.push(element);
+    });
+    displayRequests(request, pageId, 'admin');
+  } else {
+    unAuthorized();
+  }
 }
 
 function adminReqDetails() {
-  const el = document.getElementById('adminDetail');
-  const request = JSON.parse(localStorage.getItem('request'));
-  let button1 = '';
-  let button2 = '';
-  if (request.status === 'pending') {
-    button1 = `<a href="#!" onclick="adminUpdate(${request.id}, 'approve')" class="button info">Approve</a>`;
-    button2 = `<a href="#!" onclick="adminUpdate(${request.id}, 'disapprove')" class="button danger">Disapprove</a>`;
-  } else if (request.status === 'approved') {
-    button1 = `<a href="#!" onclick="adminUpdate(${request.id}, 'resolve')" class="button primary">Resolve</a>`;
-    button2 = `<a href="#!" onclick="adminUpdate(${request.id}, 'disapprove')" class="button info">Disapprove</a>`;
-  } else if (request.status === 'disapproved') {
-    button1 = `<a href="#!" onclick="adminUpdate(${request.id}, 'approve')" class="button info">Approve</a>`;
-  }
-  const detail = `
+  if (isAdmin()) {
+    const el = document.getElementById('adminDetail');
+    const request = JSON.parse(localStorage.getItem('request'));
+    let button1 = '';
+    let button2 = '';
+    if (request.status === 'pending') {
+      button1 = `<a href="#!" onclick="adminUpdate(${request.id}, 'approve')" class="button info">Approve</a>`;
+      button2 = `<a href="#!" onclick="adminUpdate(${request.id}, 'disapprove')" class="button danger">Disapprove</a>`;
+    } else if (request.status === 'approved') {
+      button1 = `<a href="#!" onclick="adminUpdate(${request.id}, 'resolve')" class="button primary">Resolve</a>`;
+      button2 = `<a href="#!" onclick="adminUpdate(${request.id}, 'disapprove')" class="button info">Disapprove</a>`;
+    } else if (request.status === 'disapproved') {
+      button1 = `<a href="#!" onclick="adminUpdate(${request.id}, 'approve')" class="button info">Approve</a>`;
+    }
+    const detail = `
       <div class="card-head">
         <h4>${request.title}</h4>
       </div>
@@ -39,7 +61,10 @@ function adminReqDetails() {
         ${button1}
         ${button2}
       </div>`;
-  el.innerHTML = detail;
+    el.innerHTML = detail;
+  } else {
+    unAuthorized();
+  }
 }
 
 function adminReq(id) {
@@ -53,18 +78,26 @@ function adminReq(id) {
 }
 
 function showAllAdminReq() {
-  const data = JSON.parse(localStorage.getItem('adminRequests'));
-  displayRequests(data, 'allRequests', 'admin');
+  if (isAdmin()) {
+    const data = JSON.parse(localStorage.getItem('adminRequests'));
+    displayRequests(data, 'allRequests', 'admin');
+  } else {
+    unAuthorized();
+  }
 }
 
 function getAdminRequests() {
-  const token = localStorage.getItem('token');
-  fetchData(`${baseURL}/requests`, {
-    method: 'GET',
-    token,
-  })
-    .then(data => localStorage.setItem('adminRequests', JSON.stringify(data)));
-  showAdminReq('pending');
+  if (isAdmin()) {
+    const token = localStorage.getItem('token');
+    fetchData(`${baseURL}/requests`, {
+      method: 'GET',
+      token,
+    })
+      .then(data => localStorage.setItem('adminRequests', JSON.stringify(data)));
+    showAdminReq('pending');
+  } else {
+    unAuthorized();
+  }
 }
 
 function adminUpdate(requestId, action) {
