@@ -31,19 +31,22 @@
                 <div id="createError"></div>
 
                 <div class="form-section">
-                    <label for="title"><strong>Request Title</strong></label>
                     <input type="text" id="title" name="title" placeholder="Title of the request..." required>
                     <div id="titleError"></div>
                 </div>              
 
                 <div class="form-section">
-                    <label for="duration"><strong>Expected Duration of the Maintenance</strong></label>
-                    <input type="number" id="duration" name="duration" placeholder="How long will it take? (in days)" required>
-                    <div id="durationError"></div>
-                </div>          
+                    <select id="device" name="device">
+                        <option value="Laptop">Laptop PC</option>
+                        <option value="Desktop">Desktop PC</option>
+                        <option value="Smartphone">Smartphone</option>
+                        <option value="Tablet">Tablet PC</option>
+                        <option value="Others">Others</option>
+                    </select>
+                    <div id="deviceError"></div>
+                </div>  
 
                 <div class="form-section">
-                    <label for="description"><strong>Request Description</strong></label>
                     <textarea id="description" name="description" placeholder="Describe the requested maintenance and why it is necessary..." required></textarea>  
                     <div id="descriptionError"></div>
                 </div>

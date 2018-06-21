@@ -1,5 +1,6 @@
 // To be loaded in every file before other scripts
-const baseURL = 'https://veraclins-m-tracker.herokuapp.com/api/v1';
+// const baseURL = 'https://veraclins-m-tracker.herokuapp.com/api/v1'; // Hosted app
+const baseURL = 'http://localhost:5000/api/v1'; // Local development
 
 function fetchData(url, payload) {
   const response = fetch(url, {
@@ -29,7 +30,7 @@ function displayRequests(request, pageId, type) {
     rows = `
         <li>
           <h2 class="centered">
-            There are no requsts in this category at the moment!
+            There are no requests in this category at the moment!
           </h2>                    
         </li>`;
   } else if (request.length === 0) {
@@ -73,12 +74,12 @@ function handleValidationErrors(errors) {
     const element = document.getElementById(`${key}`);
     const error = document.getElementById(`${key}Error`);
     element.style.border = '1px solid red';
-    error.innerHTML = `<span class="danger"><small>${value}</small></span>`;
+    error.innerHTML = `<span class="danger">${key} <small>${value}</small></span>`;
     document.documentElement.scrollTop = 100;
   });
 }
 
 function logout() {
-  localStorage.setItem('token', '');
+  localStorage.clear();
   window.location.href = 'index.html';
 }

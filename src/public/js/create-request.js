@@ -36,7 +36,7 @@ function submit(event) {
   const request = {};
   event.preventDefault();
   request.title = requestData.title.value;
-  request.duration = requestData.duration.value;
+  request.device = requestData.device.value;
   request.description = requestData.description.value;
 
   createRequest(request, link);

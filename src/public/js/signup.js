@@ -34,8 +34,6 @@ function submit(event) {
   user.email = signUpData.email.value;
   user.password = signUpData.password.value;
   user.passwordConfirmation = signUpData.passwordConfirmation.value;
-  user.dept = signUpData.dept.value;
-  user.employeeCode = signUpData.employeeCode.value;
 
   signUp(user);
 }

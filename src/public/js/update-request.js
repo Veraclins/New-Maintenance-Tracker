@@ -34,14 +34,14 @@ function updateRequest(request) {
 function populate() {
   const request = JSON.parse(localStorage.getItem('request'));
   data.title.value = request.title;
-  data.duration.value = request.duration;
+  data.device.value = request.device;
   data.description.value = request.description;
 }
 function submit(event) {
   event.preventDefault();
   const request = {};
   request.title = data.title.value;
-  request.duration = data.duration.value;
+  request.device = data.device.value;
   request.description = data.description.value;
 
   updateRequest(request);

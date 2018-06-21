@@ -16,7 +16,7 @@ function showDetails() {
           <div><strong>Date Created: </strong>${new Date(request.created_at).toDateString()}</div>                 
           <div><strong>Date Updated: </strong>${new Date(request.updated_at).toDateString()}</div>                 
           <div><strong>Status: </strong>${request.status}</div>                 
-          <div><strong>Duration: </strong>${request.duration} day(s)</div>                 
+          <div><strong>Device: </strong>${request.device}</div>                 
           <div><strong>Description: </strong>${request.description}</div>
           ${button}
         </div>`;
