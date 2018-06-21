@@ -20,11 +20,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Routes handler
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
+app.use('/api/v1', v1Route);
 app.all('/', (req, res) => {
   res.sendFile('index.html');
 });
-app.use('/api/v1', v1Route);
-
 
 /* eslint-disable no-console */
 export const server = app.listen(PORT, () => {
