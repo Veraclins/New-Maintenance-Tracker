@@ -93,8 +93,10 @@ function getAdminRequests() {
       method: 'GET',
       token,
     })
-      .then(data => localStorage.setItem('adminRequests', JSON.stringify(data)));
-    showAdminReq('pending');
+      .then((data) => {
+        localStorage.setItem('adminRequests', JSON.stringify(data));
+        showAdminReq('pending');
+      });
   } else {
     unAuthorized();
   }

@@ -20,7 +20,8 @@
             </nav>
         </section>
     </header>
-    <main class="container">
+    <div id="loader-wrapper"></div>
+    <main class="container" id="main">
         <section class="form-card">
             <div class="card-head primary">
                 Login to your Account
@@ -30,13 +31,11 @@
                     <div id="loginError"></div>  
 
                 <div class="form-section">
-                    <label for="name"><strong>Email Address</strong></label>
                     <input type="email" id="email" name="email" placeholder="Email address..." required>
                     <div id="emailError"></div>              
                 </div>
 
                 <div class="form-section">
-                    <label for="password"><strong>Choose a Password</strong></label>
                     <input type="password" id="password" name="password" placeholder="Password..." required>
                     <div id="passwordError"></div>
                 </div>
