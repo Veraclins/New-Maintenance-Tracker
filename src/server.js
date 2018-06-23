@@ -1,5 +1,6 @@
 import { } from 'dotenv/config';
 import express from 'express';
+import cors from 'cors';
 import path from 'path';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
@@ -16,6 +17,7 @@ app.use(logger(app.get('env') === 'production' ? 'combined' : 'dev', {
 }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
 // Routes handler
 app.use(express.static(path.join(__dirname, 'public')));

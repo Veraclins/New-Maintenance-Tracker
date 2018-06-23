@@ -46,6 +46,4 @@ To run the tests:
 
 The API runs on PORT 3000 by default but you can run it on any port you want by updating the port in .env file.
 
-## API Docs
-
 The API docs is available [here](https://veraclins-m-tracker.herokuapp.com/api-docs)

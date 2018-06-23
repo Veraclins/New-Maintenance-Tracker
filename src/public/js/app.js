@@ -3,9 +3,11 @@ const baseURL = 'https://veraclins-m-tracker.herokuapp.com/api/v1'; // Hosted ap
 // const baseURL = 'http://localhost:5000/api/v1'; // Local development
 const loader = document.getElementById('loader-wrapper');
 const mainEl = document.getElementById('main');
+const footer = document.getElementById('footer');
 
 const startLoader = () => {
   mainEl.style.display = 'none';
+  footer.style.display = 'none';
   loader.style.display = 'block';
   loader.innerHTML = `
     <div id="loader"></div>
@@ -14,6 +16,7 @@ const startLoader = () => {
 
 const stopLoader = () => {
   mainEl.style.display = 'block';
+  footer.style.display = 'block';
   loader.style.display = 'none';
 };
 
