@@ -13,10 +13,8 @@ describe('POST request to /api/v1/auth/signup', () => {
         email: 'andela@test.com',
         firstName: 'Andela',
         lastName: 'Samuel',
-        dept: 'Technical Services',
         password: 'password',
         passwordConfirmation: 'password',
-        employeeCode: 'US006',
       })
       .end((err, res) => {
         expect(res.status).to.be.equal(201);
@@ -33,10 +31,8 @@ describe('POST request to /api/v1/auth/signup', () => {
         email: 'andelacom',
         firstName: 'An',
         lastName: 'Sa',
-        dept: 'Tech',
         password: 'pass',
         passwordConfirmation: 'passwor',
-        employeeCode: 'US38',
       })
       .end((err, res) => {
         expect(res.status).to.be.equal(400);

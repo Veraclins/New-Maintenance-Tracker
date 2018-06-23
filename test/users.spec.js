@@ -7,16 +7,6 @@ chai.use(chaiHttp);
 
 let token = '';
 describe('Root route, /api/v1/', () => {
-  it('redirects to /api/v1/', (done) => {
-    chai.request(server)
-      .get('/')
-      .end((err, res) => {
-        expect(res).to.redirect; // eslint-disable-line
-        expect(res).to.have.status(200);
-        done();
-      });
-  });
-
   it('responds with status 200', (done) => {
     chai.request(server)
       .get('/api/v1/')
@@ -62,7 +52,7 @@ describe('POST request to /api/v1/users/requests', () => {
       .send({
         title: 'General repainting',
         description: 'Although a downpour briefly interrupted play in the early stages of the second half, Nigeria played with more intent after half-time and went close in the 63rd minute, as John Obi Mikel saw a header saved by Vaclik.',
-        duration: 5,
+        device: 'Smartphone',
       })
       .end((err, res) => {
         expect(res.status).to.be.equal(201);
@@ -79,7 +69,7 @@ describe('POST request to /api/v1/users/requests', () => {
       .send({
         title: 'Gene',
         description: 'Although.',
-        duration: 500,
+        device: 'Geet',
       })
       .end((err, res) => {
         expect(res.status).to.be.equal(400);
@@ -109,7 +99,7 @@ describe('POST request to /api/v1/users/requests', () => {
       .send({
         title: 'General repainting',
         description: 'Although a downpour briefly interrupted play in the early stages of the second half, Nigeria played with more intent after half-time and went close in the 63rd minute, as John Obi Mikel saw a header saved by Vaclik.',
-        duration: 8,
+        device: 'Tablet',
       })
       .end((err, res) => {
         expect(res).to.have.status(400);
@@ -191,12 +181,12 @@ describe('PUT request to /api/v1/users/requests/:requestId', () => {
       .send({
         title: 'Excellent Work',
         description: 'Although a downpour briefly interrupted play in the early stages of the second half, Nigeria played with more intent after half-time and went close in the 63rd minute, as John Obi Mikel saw a header saved by Vaclik.',
-        duration: 8,
+        device: 'Desktop',
       })
       .end((err, res) => {
         expect(res.status).to.be.equal(200);
         expect(res.body).to.be.an('object');
-        expect(res.body).to.have.property('users_id', 2);
+        expect(res.body).to.have.property('user_id', 2);
         expect(res.body).to.have.property('title');
         done();
       });
@@ -209,7 +199,7 @@ describe('PUT request to /api/v1/users/requests/:requestId', () => {
       .send({
         title: 'General repainting',
         description: 'Although a downpour briefly interrupted play in the early stages of the second half, Nigeria played with more intent after half-time and went close in the 63rd minute, as John Obi Mikel saw a header saved by Vaclik.',
-        duration: 8,
+        device: 'Smartphone',
       })
       .end((err, res) => {
         expect(res).to.have.status(404);

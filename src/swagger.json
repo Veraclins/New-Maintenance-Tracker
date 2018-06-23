@@ -3,7 +3,7 @@
   "info": {
     "version": "1.0",
     "title": "Veraclins Maintenance Tracker",
-    "description": "A simple API to manage mainenance and repair requests from employees of the company and make it very easy for both the users and admins to keep track of their maintenance work. To checkout the admin routes, use email = clinton@test.com, password = password."
+    "description": "A simple API to manage mainenance and repair requests from users and make it very easy for both the users and admins to keep track of their maintenance work. To checkout the admin routes, use email = clinton@test.com, password = password."
   },
   "schemes": [
     "https"
@@ -127,7 +127,7 @@
               "required": [
                 "title",
                 "description",
-                "duration"
+                "device"
               ],
               "properties": {
                 "title": {
@@ -136,7 +136,7 @@
                 "description": {
                   "type": "string"
                 },
-                "duration": {
+                "device": {
                   "type": "number"
                 }
               }
@@ -215,7 +215,7 @@
               "required": [
                 "title",
                 "description",
-                "duration"
+                "device"
               ],
               "properties": {
                 "title": {
@@ -224,7 +224,7 @@
                 "description": {
                   "type": "string"
                 },
-                "duration": {
+                "device": {
                   "type": "number"
                 }
               }
@@ -437,9 +437,7 @@
         "lastName",
         "email",
         "password",
-        "PasswordConfirmation",
-        "dept",
-        "employeeCode"
+        "PasswordConfirmation"
       ],
       "properties": {
         "firstName": {
@@ -457,9 +455,6 @@
         "passwordConfirmation": {
           "type": "string"
         },
-        "employeeCode": {
-          "type": "string"
-        },
         "created_at": {
           "type": "string",
           "format": "date-time"
@@ -474,7 +469,7 @@
       "required": [
         "title",
         "description",
-        "duration"
+        "device"
       ],
       "properties": {
         "id": {
@@ -489,7 +484,7 @@
         "description": {
           "type": "string"
         },
-        "duration": {
+        "device": {
           "type": "number"
         },
         "status": {

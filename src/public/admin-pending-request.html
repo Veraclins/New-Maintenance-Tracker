@@ -9,7 +9,8 @@
 </head>
 <body onload="getAdminRequests()">
     <header>
-        <section class="container">
+        <div id="loader-wrapper"></div>
+        <main class="container" id="main">
             <div class="header-brand">
                 <a href="index.html">Maintenance Tracker</a>
             </div>
@@ -21,7 +22,7 @@
             </nav>
         </section>
     </header>
-    <main class="container">
+    <main class="container" id="main" id="admin">
         <section class="card">
             <p id="welcome">Welcome to Admin Area</p>
             <h3>Users are waiting for your approval and resolution</h3>
@@ -33,12 +34,12 @@
                 </div>
                 <div class="column">
                     <div class="card-body centered">
-                        <a href="admin-pending-request.html" class=" button primary">Pending Requests</a>
+                        <a href="admin-approved-request.html" class=" button primary">Approved Requests</a>
                     </div> 
                 </div>
                 <div class="column">
                     <div class="card-body centered">
-                        <a href="admin-approved-request.html" class=" button primary">Approved Requests</a>
+                        <a href="admin-disapproved-request.html" class=" button primary">Disapproved Requests</a>
                     </div> 
                 </div>
                 <div class="column">
@@ -52,13 +53,36 @@
             <div class="card-head">
                 Pending Requests
             </div>
-            <!-- User requests will be injected here -->   
-            <ul class="card-body" id="pendingRequests">
-                      
-
-            </ul>
+            <!-- Pending requests will be injected here -->   
+            <ul class="card-body" id="pendingRequests"></ul>
+            
         </section>
+        
     </main>
-    <script src="app.js"></script>
+    <section class="footer">
+        <div class="container">
+            <div class="columns">
+                <div class="column">
+                    <strong>Designed with love by <a href="https://facebook.com/veraclins" target="_blank">Veraclins</a></strong>
+                    <p>Follow us on <a href="https://twitter.com/icstps" target="_blank"> Twitter</a></p>
+                </div>
+                <div class="column centered">
+                    <strong>Important Links</strong>
+                    <nav>
+                        <ul>
+                            <li>| <a href="index.html">Home</a></li>
+                            <li>| <a href="sign-up.html">Create Account</a></li>
+                            <li>| <a href="login.html">Login </a> |</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <p class="centered">
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> <a href="https://facebook.com/veraclins" target="_blank">Veraclins</a> | All rights reserved
+            </p>
+        </div>
+    </section>
+    <script src="js/app.js"></script>
+    <script src="js/admin-request.js"></script>
 </body>
 </html>

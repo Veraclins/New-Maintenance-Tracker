@@ -6,7 +6,6 @@ const users = [
     email: 'agadaclinton@gmail.com',
     password: 'password',
     user_code: 'AD001',
-    dept: 'Web-development',
     role: 'admin',
   },
 
@@ -17,7 +16,6 @@ const users = [
     email: 'innocent@gmail.com',
     password: 'password',
     user_code: 'AD002',
-    dept: 'Web-development',
     role: 'user',
   },
   {
@@ -26,7 +24,6 @@ const users = [
     email: 'angela@gmail.com',
     password: 'password',
     user_code: 'AD003',
-    dept: 'Maintenance',
     role: 'user',
   },
 ];

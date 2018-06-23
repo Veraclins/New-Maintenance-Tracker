@@ -1,8 +1,8 @@
 import { } from 'dotenv/config';
 import express from 'express';
+import path from 'path';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
-import cors from 'cors';
 import swaggerUi from 'swagger-ui-express';
 import v1Route from './routes/v1';
 import swaggerDoc from './swagger.json';
@@ -16,15 +16,14 @@ app.use(logger(app.get('env') === 'production' ? 'combined' : 'dev', {
 }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
 
 // Routes handler
+app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
-app.all('/', (req, res) => {
-  res.redirect('/api/v1');
-});
 app.use('/api/v1', v1Route);
-
+app.all('/', (req, res) => {
+  res.sendFile('index.html');
+});
 
 /* eslint-disable no-console */
 export const server = app.listen(PORT, () => {

@@ -110,7 +110,7 @@ describe('GET request to /api/v1/requests/2/approve', () => {
         description: `Check to see if the array has a length of 0. 
             Each time an element is added to an array the length is increased. 
             Arrays have a .length property that can easily be checked in a boolean statement like if(arr.length === 0) console.log`,
-        duration: 8,
+        device: 'Smartphone',
       })
       .end((err, res) => {
         expect(res).to.have.status(404);
@@ -128,7 +128,7 @@ describe('GET request to /api/v1/requests/2/approve', () => {
         description: `Check to see if the array has a length of 0. 
             Each time an element is added to an array the length is increased. 
             Arrays have a .length property that can easily be checked in a boolean statement like if(arr.length === 0) console.log`,
-        duration: 8,
+        device: 'Laptop',
       })
       .end((err, res) => {
         expect(res).to.have.status(400);
@@ -179,7 +179,7 @@ describe('GET request to /api/v1/requests/3/disapprove', () => {
         description: `Check to see if the array has a length of 0. 
             Each time an element is added to an array the length is increased. 
             Arrays have a .length property that can easily be checked in a boolean statement like if(arr.length === 0) console.log`,
-        duration: 8,
+        device: 'Tablet',
       })
       .end((err, res) => {
         expect(res).to.have.status(404);
@@ -230,7 +230,7 @@ describe('GET request to /api/v1/requests/2/resolve', () => {
         description: `Check to see if the array has a length of 0. 
             Each time an element is added to an array the length is increased. 
             Arrays have a .length property that can easily be checked in a boolean statement like if(arr.length === 0) console.log`,
-        duration: 8,
+        device: 'Desktop',
       })
       .end((err, res) => {
         expect(res).to.have.status(404);
