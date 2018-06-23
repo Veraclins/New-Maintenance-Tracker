@@ -23,23 +23,47 @@
         </section>
     </header>
     <div id="loader-wrapper"></div>
-    <main class="container" id="main">  
-        <section class="card">                  
-            <p id="welcome">Welcome to your dashboard</p>
-            <h3>Where you keep track of your maintenance requests and works</h3>
+    <main id="main">  
+        <section class="container">  
+                <p class="centered" id="welcome">Welcome to your dashboard</p>
         </section>
-        <section class="card large-card">           
-            <div class="card-head" id="title">
-                All Requests
+        <section class="container"> 
+             <div class="card">
+                <div class="card-head" id="title">
+                Here are Your Requests So Far
             </div>
                 <!-- User requests will be injected here -->   
             <ul class="card-body" id="userRequests">
                       
 
             </ul>
+             </div>         
         </section>
         
     </main>
+    <section class="footer">
+        <div class="container">
+            <div class="columns">
+                <div class="column">
+                    <strong>Designed with love by <a href="https://facebook.com/veraclins" target="_blank">Veraclins</a></strong>
+                    <p>Follow us on <a href="https://twitter.com/icstps" target="_blank"> Twitter</a></p>
+                </div>
+                <div class="column centered">
+                    <strong>Important Links</strong>
+                    <nav>
+                        <ul>
+                            <li>| <a href="index.html">Home</a></li>
+                            <li>| <a href="sign-up.html">Create Account</a></li>
+                            <li>| <a href="login.html">Login </a> |</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <p class="centered">
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> <a href="https://facebook.com/veraclins" target="_blank">Veraclins</a> | All rights reserved
+            </p>
+        </div>
+    </section>
     <script src="js/app.js"></script>
     <script src="js/dashboard.js"></script>
 </body>

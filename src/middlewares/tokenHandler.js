@@ -14,7 +14,7 @@ export const verifyToken = async (req, res, next) => {
   const token = req.headers['x-access-token'];
   try {
     if (!token) {
-      res.status(400).send({ Error: 'You must supply a token' });
+      res.status(400).send({ Error: 'You must supply an access token' });
     } else {
       await jwt.verify(token, secret, (err, decoded) => {
         if (decoded) {

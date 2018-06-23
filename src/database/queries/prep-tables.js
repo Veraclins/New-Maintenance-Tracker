@@ -1,26 +1,30 @@
-const prepTablesQuery = `DROP TABLE IF EXISTS requests;
-  CREATE TABLE requests(
-    id SERIAL PRIMARY KEY, 
-    user_id INTEGER NOT NULL,
-    title VARCHAR NOT NULL, 
-    device VARCHAR NOT NULL, 
-    description TEXT NOT NULL, 
-    status status DEFAULT 'pending', 
-    created_at TIMESTAMP DEFAULT NOW(), 
-    updated_at TIMESTAMP DEFAULT NOW());
-
+const prepTablesQuery = `
+    DROP TABLE IF EXISTS requests;
     DROP TABLE IF EXISTS users;
     CREATE TABLE users(
-    id SERIAL PRIMARY KEY, 
-    first_name VARCHAR NOT NULL, 
-    last_Name VARCHAR NOT NULL, 
-    email VARCHAR NOT NULL UNIQUE, 
-    password VARCHAR NOT NULL, 
-    role VARCHAR NOT NULL DEFAULT 'User',
-    created_at TIMESTAMP DEFAULT NOW(), 
-    updated_at TIMESTAMP DEFAULT NOW());
+      id SERIAL PRIMARY KEY, 
+      first_name VARCHAR NOT NULL, 
+      last_name VARCHAR NOT NULL, 
+      email VARCHAR NOT NULL UNIQUE, 
+      password VARCHAR NOT NULL, 
+      role VARCHAR NOT NULL DEFAULT 'User',
+      created_at TIMESTAMP DEFAULT NOW(), 
+      updated_at TIMESTAMP DEFAULT NOW()
+    );
+
+    CREATE TABLE requests(
+      id SERIAL, 
+      user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+      title VARCHAR NOT NULL, 
+      device VARCHAR NOT NULL, 
+      description TEXT NOT NULL, 
+      status status DEFAULT 'pending', 
+      created_at TIMESTAMP DEFAULT NOW(), 
+      updated_at TIMESTAMP DEFAULT NOW(),
+      PRIMARY KEY (id, user_id)
+    );
     
-    INSERT INTO users (first_name, last_Name, email, password, role) VALUES
+    INSERT INTO users (first_name, last_name, email, password, role) VALUES
     ('Agada', 'Clinton', 'clinton@test.com', '$2b$08$7Eag5c9WgbiM7RQBM7mcaOTAJo.CXp5SeYsxSCgu2evrhUH1Xzney', 'Admin'),
     ('Agada', 'Innocent', 'innocent@test.com', '$2b$08$7Eag5c9WgbiM7RQBM7mcaOTAJo.CXp5SeYsxSCgu2evrhUH1Xzney', 'User'),
     ('Anthony', 'Solomon', 'solomon@test.com', '$2b$08$7Eag5c9WgbiM7RQBM7mcaOTAJo.CXp5SeYsxSCgu2evrhUH1Xzney', 'User'),

@@ -1,6 +1,6 @@
 // To be loaded in every file before other scripts
-// const baseURL = 'https://veraclins-m-tracker.herokuapp.com/api/v1'; // Hosted app
-const baseURL = 'http://localhost:5000/api/v1'; // Local development
+const baseURL = 'https://veraclins-m-tracker.herokuapp.com/api/v1'; // Hosted app
+// const baseURL = 'http://localhost:5000/api/v1'; // Local development
 const loader = document.getElementById('loader-wrapper');
 const mainEl = document.getElementById('main');
 
@@ -37,10 +37,12 @@ function displayRequests(request, pageId, type) {
   const el = document.getElementById(pageId);
   let rows = `
       <li class="columns">
-        <h2 class="column"><strong>Requests</strong></h2>
         <div class="column columns">
-          <h2><strong>Date</strong></h2>
-          <h2><strong>Status</strong></h2>
+          <h2>Requests</h2>
+        </div>
+        <div class="column columns">
+          <h2>Date</h2>
+          <h2>Status</h2>
         </div>
       </li>`;
   if (request.length === 0 && type === 'admin') {

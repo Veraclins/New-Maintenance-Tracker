@@ -8,7 +8,7 @@ body {
 header {
     border: -1px solid rgba(238,238,238 ,1);
     margin: auto;    
-    background:  #45a049;;
+    background:  #45a049;
     border-radius: 2px;
     width: 100%;
 }
@@ -143,7 +143,6 @@ input[type=submit]:hover {
 }
 
 
-
 /* Classes */
 
 .home-welcome {
@@ -158,10 +157,34 @@ input[type=submit]:hover {
     background-position:center;
     color: white;
 }
-.footer {
-    background:  #45a049;;
+
+.home-who {
+    background-image: 
+    linear-gradient(
+      rgba(160, 0, 0, 0.4),
+      rgba(160, 0, 0, 0.4)
+    ),
+    url(img/banner-bg.jpg);
+    background-repeat:no-repeat;
+    background-size: cover;
+    background-position:center;
     color: white;
-    margin-top: 20px;
+}
+
+.footer {
+    background:  #45a049;
+    color: white;
+    position: relative;
+    width: 100%;
+    bottom: 0;
+}
+
+.footer a {
+    color: orange
+}
+
+.footer li {
+    display: inline-block;
 }
 
 .header-nav {
@@ -189,13 +212,18 @@ margin-right: 20px;
 
 .container {
     margin: 0px 28px;
+    padding: 30px 10px;
+}
+
+header .container, footer .container {
+    margin: 0px 28px;
     padding: 10px;
 }
 
 .card, .form-card {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    border-radius: 5px;
-    margin: 5px;
+    box-shadow: 0 4px 8px 4px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    margin: auto;
     padding: 10px;
     text-align: center;
 }
@@ -234,7 +262,7 @@ margin-right: 20px;
 
 
 .form-card {
-    width: 40%;
+    width: 50%;
     margin: auto;
     background: rgba(160, 0, 0, 0.3);
 }
@@ -253,26 +281,18 @@ margin-right: 20px;
 .column { 
     flex: 1;   
     width: 0;
+    margin: 0 10px;
+}
+.column:first-child { 
+    margin: 0 10px 0 0;
+}
+
+.column:last-child { 
+    margin: 0 0 0 10px;
 }
 
 .centered {
     text-align: center;
-}
-
-.brand {
-    color:  #45a049;;
-}
-
-.brand-bg {
-    background:  #45a049;;
-}
-
-.brand-comp {
-    color: #D99999;
-}
-
-.brand-comp-bg {
-    background: #D99999;
 }
 
 .primary {
@@ -324,7 +344,15 @@ margin-right: 20px;
     .column {        
         flex: 0;   
         width: 100%;
-        margin: 0 -6px;
+        margin: 10px 0;
+    }
+    
+    .column:first-child {         
+        margin: 10px 0;
+    }
+
+    .column:last-child { 
+        margin: 10px 0;
     }
 
     .small-card {    
@@ -339,7 +367,7 @@ margin-right: 20px;
 p#welcome {
     font-weight: bold;
     text-transform: uppercase;
-    font-size: 60px;
+    font-size: 50px;
 }
 
 /* Spinning Loader */

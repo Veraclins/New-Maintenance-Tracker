@@ -1,10 +1,6 @@
 const user = JSON.parse(localStorage.getItem('user'));
 
-function fullname() {
-  return `${user.lastName} ${user.firstName}`;
-}
-
-document.getElementById('welcome').innerHTML = `${fullname()}, welcome to your dashboard`;
+document.getElementById('welcome').innerHTML = `${user.firstName}, welcome to your dashboard`;
 const admin = document.getElementById('admin');
 if (user.role !== 'Admin') admin.style.display = 'none';
 
