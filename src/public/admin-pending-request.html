@@ -13,8 +13,7 @@
 </head>
 <body onload="getAdminRequests()">
     <header>
-        <div id="loader-wrapper"></div>
-        <main class="container" id="main">
+        <section class="container">
             <div class="header-brand">
                 <a href="index.html">Maintenance Tracker</a>
             </div>
@@ -26,10 +25,9 @@
             </nav>
         </section>
     </header>
-    <main class="container" id="main" id="admin">
+    <div id="loader-wrapper"></div>
+    <main class="container"  id="main" id="admin">
         <section class="card">
-            <p id="welcome">Welcome to Admin Area</p>
-            <h3>Users are waiting for your approval and resolution</h3>
             <div class="columns">
                 <div class="column">
                     <div class="card-body centered">
@@ -52,8 +50,7 @@
                     </div> 
                 </div>
             </div>
-        </section>
-        <section class="card large-card">
+       
             <div class="card-head">
                 Pending Requests
             </div>

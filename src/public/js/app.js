@@ -10,8 +10,10 @@ const startLoader = () => {
   footer.style.display = 'none';
   loader.style.display = 'block';
   loader.innerHTML = `
-    <div id="loader"></div>
-    <p class="centered"><strong>Loading... Please Wait...</strong></p>`;
+    <div>
+      <h2 class="centered"><strong>Loading... Please Wait...</strong></h2>
+    </div>
+    <div id="loader"></div>`;
 };
 
 const stopLoader = () => {
@@ -31,8 +33,10 @@ function fetchData(url, payload) {
     },
     body: payload.body,
   })
-    .then(res => res.json());
-  stopLoader();
+    .then((res) => {
+      stopLoader();
+      return res.json();
+    });
   return response;
 }
 
@@ -103,5 +107,5 @@ function handleValidationErrors(errors) {
 
 function logout() {
   localStorage.clear();
-  window.location.href = 'index.html';
+  window.location.href = 'login.html';
 }
