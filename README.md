@@ -31,7 +31,7 @@ To run the app locally, setup a local development environment. Ensure that [`Nod
 1. Clone the repository: `git clone https://github.com/Veraclins/New-Maintenance-Tracker.git`.
 2. Navigate to the project directory: `cd New-Maintenance-Tracker`
 3. Install dependencies: `npm install`.
-4. Change .env-sample to .env.
+4. Change .env-example to .env.
 5. Create a postgres database and update .env with the credentials (The database url is in the form of `postgres://username:password@host:PORT_NO/database_name`)
 6. Set SSL to false in src/database/index.js (`SSL: false`)
 7. Run `npm run dev` to start the app with hot reloading or `npm start` to start it normally.
