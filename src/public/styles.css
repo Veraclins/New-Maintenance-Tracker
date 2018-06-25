@@ -365,6 +365,10 @@ header .container, footer .container {
 
 /* Ids */
 
+#titleCounter, #descriptionCounter {
+    text-align: right;
+    display: none;
+}
 
 p#welcome {
     font-weight: bold;

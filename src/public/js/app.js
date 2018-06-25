@@ -4,6 +4,18 @@ const baseURL = 'https://veraclins-m-tracker.herokuapp.com/api/v1'; // Hosted ap
 const loader = document.getElementById('loader-wrapper');
 const mainEl = document.getElementById('main');
 const footer = document.getElementById('footer');
+const loggedInUser = JSON.parse(localStorage.getItem('user'));
+
+const isAdmin = () => {
+  const user = JSON.parse(localStorage.getItem('user'));
+  if (user) return user.role === 'Admin';
+  return false;
+};
+
+const logger = () => {
+  if (!isAdmin()) document.getElementById('admin').style.display = 'none';
+  if (!loggedInUser) document.getElementById('dashboard').style.display = 'none';
+};
 
 const startLoader = () => {
   mainEl.style.display = 'none';
@@ -33,10 +45,9 @@ function fetchData(url, payload) {
     },
     body: payload.body,
   })
-    .then((res) => {
-      stopLoader();
-      return res.json();
-    });
+    .then(res =>
+      // stopLoader();
+      res.json());
   return response;
 }
 
@@ -93,6 +104,7 @@ function displayRequests(request, pageId, type) {
     });
   }
   el.innerHTML = rows;
+  stopLoader();
 }
 
 function handleValidationErrors(errors) {

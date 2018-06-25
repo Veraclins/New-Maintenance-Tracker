@@ -4,7 +4,7 @@ import { validParam, handleRequest } from '../database/handler';
 export const getAllRequests = (req, res) => {
   const userId = req.user.id;
   const query = {
-    text: 'SELECT * FROM requests WHERE user_id=($1) ORDER BY ID ASC',
+    text: 'SELECT * FROM requests WHERE user_id=($1) ORDER BY updated_at DESC',
     values: [userId],
   };
   queryAll(query)

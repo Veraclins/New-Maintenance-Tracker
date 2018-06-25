@@ -17,7 +17,8 @@
             </div>
             <nav>
                 <ul class="header-nav" role="navigation">
-                    <li class="nav-left"><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="dashboard.html" id="dashboard">Dashboard</a></li>
+                    <li class="nav-left"><a href="admin-index.html" id="admin">Admin Page</a></li>
                     <li><a href="#!" onclick="logout()">Logout</a></li>
                 </ul>
             </nav>
@@ -34,8 +35,9 @@
                 <div id="createError"></div>
 
                 <div class="form-section">
-                    <input type="text" id="title" name="title" placeholder="Title of the request..." required>
+                    <input type="text" id="title" name="title" onkeyup="counter('title')" placeholder="Title of the request..." required>
                     <div id="titleError"></div>
+                    <div id="titleCounter"></div>
                 </div>              
 
                 <div class="form-section">
@@ -51,8 +53,9 @@
                 </div>  
 
                 <div class="form-section">
-                    <textarea id="description" name="description" placeholder="Describe the repair/maintnenance request giving as much details as possible" required></textarea>  
+                    <textarea id="description" name="description" onkeyup="counter('description')" placeholder="Describe the repair/maintnenance request giving as much details as possible" required></textarea>  
                     <div id="descriptionError"></div>
+                    <div id="descriptionCounter"></div>
                 </div>
                 
                 <div class="form-section">
@@ -87,5 +90,8 @@
     </section>
     <script src="js/app.js"></script>
     <script src="js/create-request.js"></script>
+    <script>
+        logger();
+    </script>
 </body>
 </html>
