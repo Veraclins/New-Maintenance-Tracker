@@ -5,7 +5,7 @@ const error = {
   Error: 'The given request id does not exist or it has already been approved or resolved. Please check again',
 };
 export const adminGetAllRequests = (req, res) => {
-  queryAll('SELECT * FROM requests ORDER BY ID ASC')
+  queryAll('SELECT * FROM requests ORDER BY updated_at DESC')
     .then(data => res.status(200).send(data))
     .catch(err => res.status(500).send({ Error: err.message }));
 };

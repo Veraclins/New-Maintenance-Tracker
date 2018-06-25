@@ -1,10 +1,5 @@
-function isAdmin() {
-  const user = JSON.parse(localStorage.getItem('user'));
-  return user.role === 'Admin';
-}
-
 const unAuthorized = () => {
-  const page = document.getElementById('admin');
+  const page = document.getElementById('adminErr');
   const content = `
   <section class="card medium-card">
   <div class="card-head centered danger" >
@@ -62,12 +57,14 @@ function adminReqDetails() {
         ${button2}
       </div>`;
     el.innerHTML = detail;
+    stopLoader();
   } else {
     unAuthorized();
   }
 }
 
 function adminReq(id) {
+  startLoader();
   const requests = JSON.parse(localStorage.getItem('adminRequests'));
   let request = {};
   requests.forEach((element) => {

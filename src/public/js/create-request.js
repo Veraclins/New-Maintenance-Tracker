@@ -28,6 +28,30 @@ function createRequest(request, link) {
     });
 }
 
+function counter(element) {
+  const char = document.getElementById(`${element}Counter`);
+  let minChar = 0;
+  // const color = '';
+  let input = '';
+  if (element === 'description') {
+    input = requestData.description.value.length;
+    minChar = 20;
+  } else {
+    input = requestData.title.value.length;
+    minChar = 10;
+  }
+
+  // color = input < minChar ? 'danger' : 'primary';
+  if (input < minChar) {
+    const charLeft = minChar - input;
+    char.style.display = 'block';
+    char.innerHTML = `
+    <small>Remaining at least: <span class="danger">${charLeft} chars</span></small>`;
+  } else {
+    char.style.display = 'none';
+  }
+}
+
 function submit(event) {
   const link = {
     url: `${baseURL}/users/requests`,
@@ -41,4 +65,6 @@ function submit(event) {
 
   createRequest(request, link);
 }
+
 document.forms.requestForm.addEventListener('submit', submit);
+
