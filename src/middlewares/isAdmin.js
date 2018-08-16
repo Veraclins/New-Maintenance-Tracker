@@ -14,6 +14,5 @@ export default async function isAdmin(req, res, next) {
         return res.status(403).send({ Error: 'You are not authorized to perform this operation' });
       }
       next();
-    })
-    .catch(err => res.status(500).send({ Error: err.message }));
+    });
 }

@@ -6,6 +6,7 @@ const expect = chai.expect; // eslint-disable-line prefer-destructuring
 chai.use(chaiHttp);
 
 let token = '';
+const invalidToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1LCJ1c2VybmFtZSI6IkpvaG5Bd2Vzb21lIn0sImlhdCI6MTUzNDM0NjY0NCwiZXhwIjoxNTM2OTM4NjQ0fQ.5qsYTl7XePfSIq2496-vfGmLCqST8otVJUEPfs7thJE';
 describe('Root route, /api/v1/', () => {
   it('responds with status 200', (done) => {
     chai.request(server)
@@ -21,6 +22,17 @@ describe('Root route, /api/v1/', () => {
       .get('/api/v1/')
       .end((err, res) => {
         expect(res.body).to.have.property('message');
+        done();
+      });
+  });
+});
+
+describe('Root route, /', () => {
+  it('responds with status 200', (done) => {
+    chai.request(server)
+      .get('/')
+      .end((err, res) => {
+        expect(res).to.have.status(200);
         done();
       });
   });
@@ -58,6 +70,23 @@ describe('POST request to /api/v1/users/requests', () => {
         expect(res.status).to.be.equal(201);
         expect(res.body).to.be.an('object');
         expect(res.body).to.have.property('id');
+        done();
+      });
+  });
+
+  it('it should fail if the has invalid token', (done) => {
+    chai.request(server)
+      .post('/api/v1/users/requests')
+      .set('x-access-token', invalidToken)
+      .send({
+        title: 'General repainting',
+        description: 'Although a downpour briefly interrupted play in the early stages of the second half, Nigeria played with more intent after half-time and went close in the 63rd minute, as John Obi Mikel saw a header saved by Vaclik.',
+        device: 'Smartphone',
+      })
+      .end((err, res) => {
+        expect(res.status).to.be.equal(401);
+        expect(res.body).to.be.an('object');
+        expect(res.body).to.have.property('Error');
         done();
       });
   });

@@ -24,6 +24,24 @@ describe('POST request to /api/v1/auth/signup', () => {
       });
   });
 
+  it('should fail is the email is already registered', (done) => {
+    chai.request(server)
+      .post('/api/v1/auth/signup')
+      .send({
+        email: 'andela@test.com',
+        firstName: 'Andela',
+        lastName: 'Samuel',
+        password: 'password',
+        passwordConfirmation: 'password',
+      })
+      .end((err, res) => {
+        expect(res.status).to.be.equal(400);
+        expect(res.body).to.be.an('object');
+        expect(res.body).to.have.property('Error');
+        done();
+      });
+  });
+
   it('it should return error message and a status 400 if there are validation errors', (done) => {
     chai.request(server)
       .post('/api/v1/auth/signup')

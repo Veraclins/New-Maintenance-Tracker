@@ -8,8 +8,7 @@ export const getAllRequests = (req, res) => {
     values: [userId],
   };
   queryAll(query)
-    .then(data => res.status(200).send(data))
-    .catch(err => res.status(500).send({ Error: err.message }));
+    .then(data => res.status(200).send(data));
 };
 
 export const createRequest = (req, res) => {
@@ -24,8 +23,7 @@ export const createRequest = (req, res) => {
   querySingle(query)
     .then((request) => {
       res.status(201).send(request);
-    })
-    .catch(err => res.status(500).send({ Error: err.message }));
+    });
 };
 
 export const getRequestById = (req, res) => {

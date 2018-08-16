@@ -26,8 +26,7 @@ export const signUp = (req, res) => {
               const token = createToken(user);
               res.status(201).send({ token, user });
             }
-          })
-          .catch(err => res.status(500).send({ Error: err.message }));
+          });
       }
     });
 };
@@ -58,6 +57,5 @@ export const login = (req, res) => {
       } else {
         return res.status(401).send(unauthenticatedError);
       }
-    })
-    .catch(err => res.status(500).send({ Error: err.message }));
+    });
 };
